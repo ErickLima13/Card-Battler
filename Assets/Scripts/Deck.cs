@@ -3,17 +3,21 @@ using UnityEngine;
 
 public class Deck : MonoBehaviour
 {
+    private const float _verticalSpace = -0.1f;
+
     [SerializeField] private List<CardData> _drawPile = new();
 
+    [SerializeField] private GameObject _cardBack;
 
     private void Start()
     {
-       print( DrawCard());
+        print(DrawCard());
+        DrawVisuals();
     }
 
     private CardData DrawCard()
     {
-        if(_drawPile.Count > 0)
+        if (_drawPile.Count > 0)
         {
             int topIndex = _drawPile.Count - 1;
             CardData data = _drawPile[topIndex];
@@ -24,6 +28,13 @@ public class Deck : MonoBehaviour
         return null;
     }
 
-
+    private void DrawVisuals()
+    {
+        for (int i = 0; i < _drawPile.Count; i++)
+        {
+            GameObject newCardBack = Instantiate(_cardBack, transform);
+            newCardBack.transform.localPosition = new(0, i * _verticalSpace, 0);
+        }
+    }
 
 }
