@@ -33,7 +33,7 @@ public class PlayerHand : MonoBehaviour
 
         CardData cardData = _deck.DrawCard();
 
-        if (cardData != null)
+        if (cardData == null)
         {
             print("no cards left in deck");
             return;

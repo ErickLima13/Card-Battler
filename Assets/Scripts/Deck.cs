@@ -11,6 +11,7 @@ public class Deck : MonoBehaviour
 
     private void Start()
     {
+        Shuffle();
         DrawVisuals();
     }
 
@@ -33,6 +34,17 @@ public class Deck : MonoBehaviour
         {
             GameObject newCardBack = Instantiate(_cardBack, transform);
             newCardBack.transform.localPosition = new(0, i * _verticalSpace, 0);
+        }
+    }
+
+    private void Shuffle()
+    {
+        for (int i = 0; i < _drawPile.Count; i++)
+        {
+            CardData card = _drawPile[i];
+            int randomIndex = Random.Range(i, _drawPile.Count);
+            _drawPile[i] = _drawPile[randomIndex];
+            _drawPile[randomIndex] = card;
         }
     }
 
