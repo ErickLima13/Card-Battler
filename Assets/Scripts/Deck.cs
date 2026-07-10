@@ -11,11 +11,10 @@ public class Deck : MonoBehaviour
 
     private void Start()
     {
-        print(DrawCard());
         DrawVisuals();
     }
 
-    private CardData DrawCard()
+    public CardData DrawCard()
     {
         if (_drawPile.Count > 0)
         {

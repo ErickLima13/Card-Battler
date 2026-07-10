@@ -15,8 +15,6 @@ public class Card : MonoBehaviour
     [SerializeField] private TextMeshPro _description;
     [SerializeField] private TextMeshPro _actionCost;
 
-    [SerializeField] private CardData tempData;
-
     [SerializeField] private SortingGroup _sortingGroup;
 
     [SerializeField] private float _hoverScale = 2;
@@ -25,13 +23,11 @@ public class Card : MonoBehaviour
     private void Start()
     {
         _originalSortOrder = _sortingGroup.sortingOrder;
-        _originalPosition = transform.position;
+        _originalPosition = transform.localPosition;
         _originalScale = transform.localScale;
-
-        LoadCardData(tempData);
     }
 
-    private void LoadCardData(CardData data)
+    public void LoadCardData(CardData data)
     {
         _illustrationRender.sprite = data.illustration;
         _cardName.text = data.cardName;
