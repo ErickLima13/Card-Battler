@@ -3,7 +3,7 @@ using UnityEngine;
 
 public class DiscardPile : MonoBehaviour
 {
-    private const float _verticalSpace = .1f;
+    private const float _verticalSpace = .25f;
 
     [SerializeField] private GameObject _cardPrefab;
 
