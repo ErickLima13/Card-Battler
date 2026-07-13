@@ -13,7 +13,7 @@ public class PlayerHand : MonoBehaviour
 
     [SerializeField] private List<Card> _cardsInHand = new();
 
-
+    [SerializeField] private DiscardPile _discardPile;
 
     private void Start()
     {
@@ -45,7 +45,14 @@ public class PlayerHand : MonoBehaviour
         cardComponent.LoadCardData(cardData);
         _cardsInHand.Add(cardComponent);
         _cardsInHand[slotIndex].transform.SetParent(_cardsSlots[slotIndex]);
+    }
 
-
+    public void PlayCard(Card card)
+    {
+        print("play card");
+        _cardsInHand.Remove(card);
+        _discardPile.DiscardCard(card.CardData);
+        Destroy(card.gameObject);
+      
     }
 }

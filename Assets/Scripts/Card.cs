@@ -23,15 +23,27 @@ public class Card : MonoBehaviour
 
     private static bool _isBeingDragged;
 
+    public CardData CardData { get; private set; }
+
+
     private void Start()
     {
+        _originalScale = transform.localScale;
         _originalSortOrder = _sortingGroup.sortingOrder;
         _originalPosition = transform.localPosition;
-        _originalScale = transform.localScale;
+    }
+
+    public void CardInDiscard(int sortOrder)
+    {
+        _sortingGroup.sortingOrder = sortOrder;
+
+        GetComponent<Collider2D>().enabled = false;
+
     }
 
     public void LoadCardData(CardData data)
     {
+        CardData = data;
         _illustrationRender.sprite = data.illustration;
         _cardName.text = data.cardName;
         _description.text = data.description;
