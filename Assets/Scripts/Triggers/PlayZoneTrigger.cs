@@ -8,7 +8,6 @@ public class PlayZoneTrigger : MonoBehaviour
     {
         if(collision.TryGetComponent(out Card card))
         {
-            print("CARD enter");
             _playerHand.PlayCard(card);
 
         }
@@ -19,7 +18,6 @@ public class PlayZoneTrigger : MonoBehaviour
     {
         if (collision.TryGetComponent(out Card card))
         {
-            print("CARD left");
         }
     }
 }

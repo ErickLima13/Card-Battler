@@ -12,7 +12,6 @@ public class DiscardPile : MonoBehaviour
 
     public void DiscardCard(CardData cardData)
     {
-        print("discard card + " + cardData);
         _discardPile.Add(cardData);
         DrawDiscard(cardData);
     }

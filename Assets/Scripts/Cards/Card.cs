@@ -53,7 +53,6 @@ public class Card : MonoBehaviour
     {
         if (_isBeingDragged) return;
 
-        print("mouse enter");
         transform.localScale = _originalScale * _hoverScale;
         transform.localPosition += new Vector3(0,_hoverOffset,0);
         _sortingGroup.sortingOrder += 1;
@@ -62,9 +61,6 @@ public class Card : MonoBehaviour
     private void OnMouseExit()
     {
         if (_isBeingDragged) return;
-
-
-        print("mouse exit");
 
         transform.localScale = _originalScale;
         transform.localPosition = _originalPosition;
@@ -86,7 +82,6 @@ public class Card : MonoBehaviour
 
     private void OnMouseUp()
     {
-        print("mouse up");
         _isBeingDragged = false;
         transform.localScale = _originalScale * _hoverScale;
         transform.localPosition += new Vector3(0, _hoverOffset, 0);
