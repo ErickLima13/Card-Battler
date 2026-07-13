@@ -9,6 +9,8 @@ public class Deck : MonoBehaviour
 
     [SerializeField] private GameObject _cardBack;
 
+    [SerializeField] private PlayerHand _playerHand;
+     
     private void Start()
     {
         Shuffle();
@@ -46,6 +48,12 @@ public class Deck : MonoBehaviour
             _drawPile[i] = _drawPile[randomIndex];
             _drawPile[randomIndex] = card;
         }
+    }
+
+    private void OnMouseDown()
+    {
+        _playerHand.DrawNextCard();
+
     }
 
 }

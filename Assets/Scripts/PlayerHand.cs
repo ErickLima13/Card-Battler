@@ -23,11 +23,11 @@ public class PlayerHand : MonoBehaviour
         }
     }
 
-    private void DrawNextCard()
+    public void DrawNextCard()
     {
         if (_cardsSlots == null || _cardsInHand.Count >= _cardsSlots.Length)
         {
-            print("hans is full or slots are null");
+            print("hands is full or slots are null");
             return;
         }
 
@@ -53,6 +53,21 @@ public class PlayerHand : MonoBehaviour
         _cardsInHand.Remove(card);
         _discardPile.DiscardCard(card.CardData);
         Destroy(card.gameObject);
+        RepositionCard();
       
+    }
+
+    private void RepositionCard()
+    {
+        for(int i = 0; i < _cardsInHand.Count; i++)
+        {
+            _cardsInHand[i].transform.SetParent(null);
+        }
+
+        for (int i = 0; i < _cardsInHand.Count; i++)
+        {
+            _cardsInHand[i].transform.SetParent(_cardsSlots[i]);
+            _cardsInHand[i].transform.position = _cardsSlots[i].transform.position;
+        }
     }
 }

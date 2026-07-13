@@ -22,7 +22,9 @@ public class DiscardPile : MonoBehaviour
         GameObject newCard = Instantiate(_cardPrefab, transform);
         Card tempCard = newCard.GetComponent<Card>();
         tempCard.LoadCardData(cardData);
-        tempCard.CardInDiscard(_discardPile.Count - 1);
-        newCard.transform.localPosition = new(0, (_discardPile.Count-1) * -_verticalSpace, 0);
+
+        int indexCard = _discardPile.Count - 1;
+        tempCard.CardInDiscardZone(indexCard);
+        newCard.transform.localPosition = new(0, (indexCard) * -_verticalSpace, 0);
     }
 }

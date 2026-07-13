@@ -17,6 +17,7 @@ public class Card : MonoBehaviour
     [SerializeField] private TextMeshPro _actionCost;
 
     [SerializeField] private SortingGroup _sortingGroup;
+    [SerializeField] private Collider2D _cardCollider;
 
     [SerializeField] private float _hoverScale = 2;
     [SerializeField] private float _hoverOffset = 3;
@@ -33,12 +34,10 @@ public class Card : MonoBehaviour
         _originalPosition = transform.localPosition;
     }
 
-    public void CardInDiscard(int sortOrder)
+    public void CardInDiscardZone(int sortOrder)
     {
         _sortingGroup.sortingOrder = sortOrder;
-
-        GetComponent<Collider2D>().enabled = false;
-
+        _cardCollider.enabled = false;
     }
 
     public void LoadCardData(CardData data)
@@ -92,5 +91,10 @@ public class Card : MonoBehaviour
         transform.localScale = _originalScale * _hoverScale;
         transform.localPosition += new Vector3(0, _hoverOffset, 0);
         _sortingGroup.sortingOrder += 1;
+    }
+
+    private void OnDestroy()
+    {
+        _isBeingDragged = false;
     }
 }

@@ -114,8 +114,10 @@ MonoBehaviour:
   _cardName: {fileID: 3441022838720149449}
   _description: {fileID: 8358590661664190391}
   _actionCost: {fileID: 6969883796917065736}
-  tempData: {fileID: 11400000, guid: 452a0744fdfd90444b3d22d354288723, type: 2}
   _sortingGroup: {fileID: 1832661864701684214}
+  _cardCollider: {fileID: 3886466955682847257}
+  _hoverScale: 2
+  _hoverOffset: 3
 --- !u!61 &3886466955682847257
 BoxCollider2D:
   m_ObjectHideFlags: 0
