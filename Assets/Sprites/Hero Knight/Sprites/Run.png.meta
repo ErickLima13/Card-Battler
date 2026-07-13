@@ -150,12 +150,12 @@ TextureImporter:
       name: Run_0
       rect:
         serializedVersion: 2
-        x: 74
-        y: 65
-        width: 39
-        height: 56
+        x: 0
+        y: 0
+        width: 180
+        height: 180
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -172,12 +172,12 @@ TextureImporter:
       name: Run_1
       rect:
         serializedVersion: 2
-        x: 249
-        y: 69
-        width: 44
-        height: 52
+        x: 180
+        y: 0
+        width: 180
+        height: 180
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -194,12 +194,12 @@ TextureImporter:
       name: Run_2
       rect:
         serializedVersion: 2
-        x: 434
-        y: 68
-        width: 41
-        height: 54
+        x: 360
+        y: 0
+        width: 180
+        height: 180
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -216,12 +216,12 @@ TextureImporter:
       name: Run_3
       rect:
         serializedVersion: 2
-        x: 617
-        y: 65
-        width: 36
-        height: 57
+        x: 540
+        y: 0
+        width: 180
+        height: 180
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -238,12 +238,12 @@ TextureImporter:
       name: Run_4
       rect:
         serializedVersion: 2
-        x: 796
-        y: 65
-        width: 37
-        height: 56
+        x: 720
+        y: 0
+        width: 180
+        height: 180
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -260,12 +260,12 @@ TextureImporter:
       name: Run_5
       rect:
         serializedVersion: 2
-        x: 970
-        y: 71
-        width: 43
-        height: 52
+        x: 900
+        y: 0
+        width: 180
+        height: 180
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -282,12 +282,12 @@ TextureImporter:
       name: Run_6
       rect:
         serializedVersion: 2
-        x: 1156
-        y: 71
-        width: 38
-        height: 52
+        x: 1080
+        y: 0
+        width: 180
+        height: 180
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -304,20 +304,20 @@ TextureImporter:
       name: Run_7
       rect:
         serializedVersion: 2
-        x: 1336
-        y: 64
-        width: 37
-        height: 58
+        x: 1260
+        y: 0
+        width: 180
+        height: 180
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: f3bd376cdc5f86870800000000000000
-      internalID: 8676454946275842879
+      spriteID: 8e3ced0418eb2ef4bbb8d35e86a6512c
+      internalID: -376892322
       vertices: []
       indices: 
       edges: []
@@ -326,7 +326,7 @@ TextureImporter:
     customData: 
     physicsShape: []
     bones: []
-    spriteID: 
+    spriteID: b1671645793d0714cb11a8fc7a583290
     internalID: 0
     vertices: []
     indices: 
@@ -334,7 +334,9 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     spriteCustomMetadata:
-      entries: []
+      entries:
+      - key: SpriteEditor.SliceSettings
+        value: '{"sliceOnImport":false,"gridCellCount":{"x":8.0,"y":1.0},"gridSpriteSize":{"x":180.0,"y":180.0},"gridSpriteOffset":{"x":0.0,"y":0.0},"gridSpritePadding":{"x":0.0,"y":0.0},"pivot":{"x":0.5,"y":0.5},"pivotPixels":{"x":0.0,"y":0.0},"autoSlicingMethod":0,"spriteAlignment":0,"pivotUnitMode":0,"slicingType":2,"keepEmptyRects":false,"isAlternate":false}'
     nameFileIdTable:
       Run_0: 4944230376442633554
       Run_1: -2274363484027164459
@@ -343,7 +345,7 @@ TextureImporter:
       Run_4: 2833043080597125133
       Run_5: -2217414122262695004
       Run_6: -4440497016933152808
-      Run_7: 8676454946275842879
+      Run_7: -376892322
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
