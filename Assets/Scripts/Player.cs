@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using UnityEngine;
 
@@ -9,9 +10,15 @@ public class Player : MonoBehaviour
 
     private Animator _visualAnimator;
 
+    private Health _health;
+
+    private ParticleSystem _healVfx;
+
     private void Awake()
     {
         _visualAnimator = _playerVisual.GetComponent<Animator>();
+        _health = GetComponent<Health>();
+        _healVfx = _playerVisual.GetComponentInChildren<ParticleSystem>();
     }
 
     private void Start()
@@ -27,6 +34,18 @@ public class Player : MonoBehaviour
         {
             Attack(cardData);
         }
+
+        if(cardData.healPower  > 0)
+        {
+            Heal(cardData);
+        }
+    }
+
+    private void Heal(CardData cardData)
+    {
+        print("heal " + cardData.healPower);
+        _health.HealDamage(cardData.healPower);
+        _healVfx.Play();
     }
 
     private void Attack(CardData cardData)
