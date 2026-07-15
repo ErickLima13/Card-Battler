@@ -1,26 +1,55 @@
 using System.Collections;
+using TMPro;
 using UnityEngine;
 
 public class TurnSystem : Singleton<TurnSystem>
 {
     [SerializeField] private float _turnWaitTime = 3f;
 
+    [SerializeField] private int _maxAction;
+    [SerializeField] private int _remainingAction;
+
+    [SerializeField] private TextMeshProUGUI _remainingActionText;
+
+    private void Start()
+    {
+        _remainingAction = _maxAction;
+        UpdateActionsUI();
+    }
+
+    private void ConsumeAction(int amount)
+    {
+        _remainingAction -= amount;
+
+        UpdateActionsUI();
+
+        if (_remainingAction <= 0)
+        {
+            TurnEvents.PlayerTurnEnd();
+            StartCoroutine(BossTurn());
+        }
+    }
 
     private void CardPlayed(CardData cardData)
     {
-        TurnEvents.PlayerTurnEnd();
-        StartCoroutine(BossTurn());
+        ConsumeAction(cardData.actionCost);
     }
 
     private IEnumerator BossTurn()
     {
         yield return new WaitForSeconds(_turnWaitTime);
-
         TurnEvents.BossTurnStart();
-
         yield return new WaitForSeconds(_turnWaitTime);
 
+        
+        _remainingAction = _maxAction;
+        UpdateActionsUI();
         TurnEvents.PlayerTurnStart();
+    }
+
+    private void UpdateActionsUI()
+    {
+        _remainingActionText.text = _remainingAction.ToString();
     }
 
     private void OnEnable()
