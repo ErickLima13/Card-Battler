@@ -1,8 +1,14 @@
+using TMPro;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class Health : MonoBehaviour
 {
     [SerializeField] private int _totalHealth = 100;
+
+    [SerializeField] private TextMeshProUGUI _healthText;
+
+    [SerializeField] private Slider _healthBar;
 
     private int _currentHealth;
 
@@ -14,8 +20,17 @@ public class Health : MonoBehaviour
     private void Start()
     {
         _currentHealth = _totalHealth;
+        UpdateHealthUI();
     }
 
+
+    private void UpdateHealthUI()
+    {
+        _healthText.text = _currentHealth + "/" + _totalHealth;
+
+        _healthBar.maxValue = _totalHealth;
+        _healthBar.value = _currentHealth;
+    }
 
     public void HealDamage(int amount)
     {
@@ -28,6 +43,8 @@ public class Health : MonoBehaviour
             _currentHealth = _totalHealth;
         }
 
+        UpdateHealthUI();
+
     }
 
     public void TakeDamage(int amount)
@@ -38,7 +55,10 @@ public class Health : MonoBehaviour
 
         if(_currentHealth <= 0)
         {
+            _currentHealth = 0;
             _isDied = true;
         }
+
+        UpdateHealthUI();
     }
 }
