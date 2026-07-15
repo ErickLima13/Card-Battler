@@ -9,7 +9,6 @@ public class TurnSystem : MonoBehaviour
     private void CardPlayed(CardData cardData)
     {
         TurnEvents.PlayerTurnEnd();
-        print("player turn end");
         StartCoroutine(BossTurn());
     }
 

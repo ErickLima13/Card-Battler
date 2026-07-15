@@ -5,8 +5,15 @@ public static class PlayerEvents
 {
     public static event Action<CardData> OnCardPlayed;
 
+    public static event Action<int> OnPlayerHit;
+
     public static void CardPlayerd(CardData cardData)
     {
         OnCardPlayed?.Invoke(cardData);
+    }
+
+    public static void PlayerHit(int amount)
+    {
+        OnPlayerHit?.Invoke(amount);
     }
 }

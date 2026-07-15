@@ -1671,7 +1671,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e918d059741fdef4993d023743df733b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Health
-  _totalHealth: 100
+  _totalHealth: 2
 --- !u!1 &987587500
 GameObject:
   m_ObjectHideFlags: 0
@@ -2423,6 +2423,6 @@ SceneRoots:
   - {fileID: 2033100349}
   - {fileID: 708708141}
   - {fileID: 57536145}
+  - {fileID: 1948704892}
   - {fileID: 987138408}
   - {fileID: 440299067}
-  - {fileID: 1948704892}

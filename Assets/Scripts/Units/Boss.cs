@@ -1,4 +1,5 @@
 using System.Collections;
+using System.Runtime.InteropServices.WindowsRuntime;
 using UnityEngine;
 
 public class Boss : MonoBehaviour
@@ -10,7 +11,6 @@ public class Boss : MonoBehaviour
     private Health _health;
 
     private Vector3 _originalPosition;
-
 
 
     private void Awake()
@@ -26,18 +26,22 @@ public class Boss : MonoBehaviour
 
     private void HandleBossHit(CardData cardData)
     {
-        print("boss hit");
         _health.TakeDamage(cardData.attackPower);
         _visualAnimator.Play("hitB");
 
-        if (_health.IsAlive)
+        if (_health.Dead())
         {
             _visualAnimator.Play("deathB");
-        }  
+        }
     }
 
     private void Attack()
     {
+        if (_health.Dead())
+        {
+            return;
+        }
+
         StartCoroutine(BossAttackAnimation());
     }
 
@@ -55,6 +59,8 @@ public class Boss : MonoBehaviour
             yield return null;
             _visualAnimator.Play("attackB");
         }
+
+        PlayerEvents.PlayerHit(1);
 
         yield return new WaitForSeconds(0.5f);
 

@@ -7,7 +7,9 @@ public class Health : MonoBehaviour
     private int _currentHealth;
 
 
-    public bool IsAlive { get; private set; }
+    private bool _isDied;
+
+    public bool Dead() => _isDied;
 
     private void Start()
     {
@@ -36,9 +38,7 @@ public class Health : MonoBehaviour
 
         if(_currentHealth <= 0)
         {
-            IsAlive = true;
+            _isDied = true;
         }
-
-        print(_currentHealth + " boss life");
     }
 }

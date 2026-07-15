@@ -28,8 +28,6 @@ public class Player : MonoBehaviour
 
     private void HandleCardPlayed(CardData cardData)
     {
-        print("handler ran");
-
         if (cardData.attackPower > 0)
         {
             Attack(cardData);
@@ -50,7 +48,6 @@ public class Player : MonoBehaviour
 
     private void Attack(CardData cardData)
     {
-        print("ATTACK");
         StartCoroutine(PlayerAttackAnimation(cardData));
     }
 
@@ -86,13 +83,27 @@ public class Player : MonoBehaviour
         yield return null;
     }
 
+    private void PlayerHit(int amount)
+    {
+        _health.TakeDamage(amount);
+        _visualAnimator.Play("hitPlayer");
+
+        if (_health.Dead())
+        {
+            _visualAnimator.Play("deathPlayer");
+        }
+    }
+
     private void OnEnable()
     {
         PlayerEvents.OnCardPlayed += HandleCardPlayed;
+        PlayerEvents.OnPlayerHit += PlayerHit;
     }
 
     private void OnDisable()
     {
         PlayerEvents.OnCardPlayed -= HandleCardPlayed;
+        PlayerEvents.OnPlayerHit -= PlayerHit;
+
     }
 }
