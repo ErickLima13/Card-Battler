@@ -1,7 +1,7 @@
 using System.Collections;
 using UnityEngine;
 
-public class TurnSystem : MonoBehaviour
+public class TurnSystem : Singleton<TurnSystem>
 {
     [SerializeField] private float _turnWaitTime = 3f;
 
