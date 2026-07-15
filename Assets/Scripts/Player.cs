@@ -51,10 +51,10 @@ public class Player : MonoBehaviour
     private void Attack(CardData cardData)
     {
         print("ATTACK");
-        StartCoroutine(PlayerAttackAnimation());
+        StartCoroutine(PlayerAttackAnimation(cardData));
     }
 
-    private IEnumerator PlayerAttackAnimation()
+    private IEnumerator PlayerAttackAnimation(CardData cardData)
     {
         Vector3 targetPosition = _originalPosition + new Vector3(4, 0, 0);
 
@@ -65,12 +65,11 @@ public class Player : MonoBehaviour
         {
             _playerVisual.transform.position = Vector3.Lerp(_originalPosition, targetPosition, timeElapsed / duration);
             timeElapsed += Time.deltaTime;
-
-
             yield return null;
-
-            _visualAnimator.Play("attackPlayer");
+            _visualAnimator.Play("attackPlayer");        
         }
+
+        BossEvents.BossHit(cardData);
 
         yield return new WaitForSeconds(0.5f);
 

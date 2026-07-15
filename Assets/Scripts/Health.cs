@@ -7,6 +7,8 @@ public class Health : MonoBehaviour
     private int _currentHealth;
 
 
+    public bool IsAlive { get; private set; }
+
     private void Start()
     {
         _currentHealth = _totalHealth;
@@ -24,5 +26,19 @@ public class Health : MonoBehaviour
             _currentHealth = _totalHealth;
         }
 
+    }
+
+    public void TakeDamage(int amount)
+    {
+        if (amount <= 0) return;
+
+        _currentHealth -= amount;
+
+        if(_currentHealth <= 0)
+        {
+            IsAlive = true;
+        }
+
+        print(_currentHealth + " boss life");
     }
 }
