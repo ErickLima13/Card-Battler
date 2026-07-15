@@ -17,6 +17,13 @@ public class TurnSystem : Singleton<TurnSystem>
         UpdateActionsUI();
     }
 
+    public bool HasReimainingAction() => _remainingAction > 0;
+
+    private void DrawCardRequested()
+    {
+        ConsumeAction(1);
+    }
+
     private void ConsumeAction(int amount)
     {
         _remainingAction -= amount;
@@ -49,17 +56,18 @@ public class TurnSystem : Singleton<TurnSystem>
 
     private void UpdateActionsUI()
     {
-        _remainingActionText.text = _remainingAction.ToString();
+        _remainingActionText.text = _remainingAction.ToString() + "/" + _maxAction;
     }
 
     private void OnEnable()
     {
         PlayerEvents.OnCardPlayed += CardPlayed;
+        PlayerEvents.OnDrawCardRequested += DrawCardRequested;
     }
 
     private void OnDisable()
     {
         PlayerEvents.OnCardPlayed -= CardPlayed;
-
+        PlayerEvents.OnDrawCardRequested -= DrawCardRequested;
     }
 }

@@ -9,8 +9,6 @@ public class Deck : MonoBehaviour
 
     [SerializeField] private GameObject _cardBack;
 
-    [SerializeField] private PlayerHand _playerHand;
-     
     private void Start()
     {
         Shuffle();
@@ -52,8 +50,16 @@ public class Deck : MonoBehaviour
 
     private void OnMouseDown()
     {
-        _playerHand.DrawNextCard();
+        if (_drawPile.Count <= 0)
+        {
+            print("no cards left in deck");
+            return;
+        }
 
+        if (TurnSystem.Instance.HasReimainingAction())
+        {
+            PlayerEvents.DrawCardRequest();
+        }
     }
 
 }

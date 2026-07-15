@@ -45,6 +45,11 @@ public class PlayerHand : MonoBehaviour
         cardComponent.LoadCardData(cardData);
         _cardsInHand.Add(cardComponent);
         _cardsInHand[slotIndex].transform.SetParent(_cardsSlots[slotIndex]);
+
+        if (!TurnSystem.Instance.HasReimainingAction())
+        {
+            cardComponent.ActiveCard(false);
+        }
     }
 
     public void PlayCard(Card card)
@@ -90,11 +95,15 @@ public class PlayerHand : MonoBehaviour
     {
         TurnEvents.OnPlayerTurnEnd += DisableHand;
         TurnEvents.OnPlayerTurnStart += EnableHand;
+
+        PlayerEvents.OnDrawCardRequested += DrawNextCard;
     }
 
     private void OnDisable()
     {
         TurnEvents.OnPlayerTurnEnd -= DisableHand;
         TurnEvents.OnPlayerTurnStart -= EnableHand;
+
+        PlayerEvents.OnDrawCardRequested -= DrawNextCard;
     }
 }
