@@ -1,0 +1,87 @@
+using System.Collections;
+using UnityEngine;
+
+public class Boss : MonoBehaviour
+{
+    [SerializeField] private GameObject _bossVisual;
+
+    private Animator _visualAnimator;
+
+    private Health _health;
+
+    private Vector3 _originalPosition;
+
+
+
+    private void Awake()
+    {
+        _visualAnimator = _bossVisual.GetComponent<Animator>();
+        _health = GetComponent<Health>();
+    }
+
+    private void Start()
+    {
+        _originalPosition = _bossVisual.transform.position;
+    }
+
+    private void HandleBossHit(CardData cardData)
+    {
+        print("boss hit");
+        _health.TakeDamage(cardData.attackPower);
+        _visualAnimator.Play("hitB");
+
+        if (_health.IsAlive)
+        {
+            _visualAnimator.Play("deathB");
+        }  
+    }
+
+    private void Attack()
+    {
+        StartCoroutine(BossAttackAnimation());
+    }
+
+    private IEnumerator BossAttackAnimation()
+    {
+        Vector3 targetPosition = _originalPosition + new Vector3(-4.5f, 0, 0);
+
+        float duration = 0.5f;
+        float timeElapsed = 0f;
+
+        while (timeElapsed < duration)
+        {
+            _bossVisual.transform.position = Vector3.Lerp(_originalPosition, targetPosition, timeElapsed / duration);
+            timeElapsed += Time.deltaTime;
+            yield return null;
+            _visualAnimator.Play("attackB");
+        }
+
+        yield return new WaitForSeconds(0.5f);
+
+        timeElapsed = 0f;
+        while (timeElapsed < duration)
+        {
+            _bossVisual.transform.position = Vector3.Lerp(targetPosition, _originalPosition, timeElapsed / duration);
+            timeElapsed += Time.deltaTime;
+            yield return null;
+
+            _visualAnimator.Play("returnB");
+        }
+
+        yield return null;
+    }
+
+
+    private void OnEnable()
+    {
+        BossEvents.OnBossHit += HandleBossHit;
+        TurnEvents.OnBossTurnStart += Attack;
+    }
+
+    private void OnDisable()
+    {
+        BossEvents.OnBossHit -= HandleBossHit;
+        TurnEvents.OnBossTurnStart -= Attack;
+
+    }
+}
