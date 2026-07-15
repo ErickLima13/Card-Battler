@@ -6,6 +6,8 @@ public class Boss : MonoBehaviour
 {
     [SerializeField] private GameObject _bossVisual;
 
+    [SerializeField] private int _attackDamage = 5;
+
     private Animator _visualAnimator;
 
     private Health _health;
@@ -60,7 +62,7 @@ public class Boss : MonoBehaviour
             _visualAnimator.Play("attackB");
         }
 
-        PlayerEvents.PlayerHit(1);
+        PlayerEvents.PlayerHit(_attackDamage);
 
         yield return new WaitForSeconds(0.5f);
 
