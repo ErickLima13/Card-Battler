@@ -69,4 +69,32 @@ public class PlayerHand : MonoBehaviour
             _cardsInHand[i].transform.position = _cardsSlots[i].transform.position;
         }
     }
+
+    private void DisableHand()
+    {
+        for (int i = 0; i < _cardsInHand.Count; i++)
+        {
+            _cardsInHand[i].ActiveCard(false);
+        }
+    }
+
+    private void EnableHand()
+    {
+        for (int i = 0; i < _cardsInHand.Count; i++)
+        {
+            _cardsInHand[i].ActiveCard(true);
+        }
+    }
+
+    private void OnEnable()
+    {
+        TurnEvents.OnPlayerTurnEnd += DisableHand;
+        TurnEvents.OnPlayerTurnStart += EnableHand;
+    }
+
+    private void OnDisable()
+    {
+        TurnEvents.OnPlayerTurnEnd -= DisableHand;
+        TurnEvents.OnPlayerTurnStart -= EnableHand;
+    }
 }

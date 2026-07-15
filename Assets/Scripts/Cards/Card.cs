@@ -40,6 +40,11 @@ public class Card : MonoBehaviour
         _cardCollider.enabled = false;
     }
 
+    public void ActiveCard(bool value)
+    {
+        _cardCollider.enabled = value;
+    }
+
     public void LoadCardData(CardData data)
     {
         CardData = data;
