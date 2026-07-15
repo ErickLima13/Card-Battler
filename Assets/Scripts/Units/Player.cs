@@ -91,6 +91,7 @@ public class Player : MonoBehaviour
         if (_health.Dead())
         {
             _visualAnimator.Play("deathPlayer");
+            PlayerEvents.PlayerDeath();
         }
     }
 

@@ -34,6 +34,7 @@ public class Boss : MonoBehaviour
         if (_health.Dead())
         {
             _visualAnimator.Play("deathB");
+            BossEvents.BossDeath();
         }
     }
 
