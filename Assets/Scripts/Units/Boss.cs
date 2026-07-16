@@ -1,3 +1,4 @@
+using FGT.Prototypes.DamagePopup;
 using System.Collections;
 using System.Runtime.InteropServices.WindowsRuntime;
 using UnityEngine;
@@ -28,6 +29,9 @@ public class Boss : MonoBehaviour
 
     private void HandleBossHit(CardData cardData)
     {
+        string temp = "- " + cardData.attackPower;
+        DamagePopup.Create($"{temp}", Vector3.up, transform, Color.red, 15);
+
         _health.TakeDamage(cardData.attackPower);
         _visualAnimator.Play("hitB");
 

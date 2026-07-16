@@ -1,3 +1,4 @@
+using FGT.Prototypes.DamagePopup;
 using System;
 using System.Collections;
 using TMPro;
@@ -51,6 +52,9 @@ public class TurnSystem : Singleton<TurnSystem>
         _remainingAction -= amount;
 
         UpdateActionsUI();
+
+        string temp = "- " + amount;
+        DamagePopup.Create($"{temp}", Vector3.up, _remainingActionText.rectTransform, Color.white, 10);
 
         if (_remainingAction <= 0)
         {

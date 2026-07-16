@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using UnityEngine;
+using FGT.Prototypes.DamagePopup;
 
 public class Player : MonoBehaviour
 {
@@ -41,10 +42,12 @@ public class Player : MonoBehaviour
 
     private void Heal(CardData cardData)
     {
-        print("heal " + cardData.healPower);
         _health.HealDamage(cardData.healPower);
         _healVfx.Play();
         PlayerEvents.PlayerHealed();
+
+        string temp = "+ " + cardData.healPower;
+        DamagePopup.Create($"{temp}",Vector3.up, transform, Color.red, 20);
     }
 
     private void Attack(CardData cardData)
@@ -86,6 +89,9 @@ public class Player : MonoBehaviour
 
     private void PlayerHit(int amount)
     {
+        string temp = "- " + amount;
+        DamagePopup.Create($"{temp}", Vector3.up, transform, Color.red, 15);
+
         _health.TakeDamage(amount);
         _visualAnimator.Play("hitPlayer");
 

@@ -1915,8 +1915,6 @@ MonoBehaviour:
   _playCard: {fileID: 8300000, guid: 7a55529c46dd7ec4f91ba8756269de88, type: 3}
   _drawCard: {fileID: 8300000, guid: 33eb15c838c33cf49a2809499f804d5f, type: 3}
   _reshufleCard: {fileID: 8300000, guid: 69ad91f65a0b11048ad10e84b2ba03e3, type: 3}
-  _bossHit: {fileID: 8300000, guid: d65a1d5aa46ee384898c368461f800ca, type: 3}
-  _playerHit: {fileID: 8300000, guid: d65a1d5aa46ee384898c368461f800ca, type: 3}
   _bossDeath: {fileID: 8300000, guid: 7709c5463d829e448981fcabb277bdad, type: 3}
   _playerDeath: {fileID: 8300000, guid: 7709c5463d829e448981fcabb277bdad, type: 3}
   _playerHealed: {fileID: 8300000, guid: e5f5eede83388e942a6a8d297373eda3, type: 3}
@@ -3254,8 +3252,8 @@ MonoBehaviour:
   m_fontMaterials: []
   m_fontColor32:
     serializedVersion: 2
-    rgba: 4278190080
-  m_fontColor: {r: 0, g: 0, b: 0, a: 1}
+    rgba: 4294967295
+  m_fontColor: {r: 1, g: 1, b: 1, a: 1}
   m_enableVertexGradient: 0
   m_colorMode: 3
   m_fontColorGradient:
