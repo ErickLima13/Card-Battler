@@ -2,6 +2,7 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.Rendering;
+using static UnityEngine.Tilemaps.TilemapRenderer;
 
 public class Card : MonoBehaviour
 {
@@ -36,8 +37,13 @@ public class Card : MonoBehaviour
 
     public void CardInDiscardZone(int sortOrder)
     {
+        SetOrderCard(sortOrder);
+        ActiveCard(false);
+    }
+
+    public void SetOrderCard(int sortOrder)
+    {
         _sortingGroup.sortingOrder = sortOrder;
-        _cardCollider.enabled = false;
     }
 
     public void ActiveCard(bool value)

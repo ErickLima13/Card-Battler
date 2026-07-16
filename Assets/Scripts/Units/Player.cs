@@ -44,6 +44,7 @@ public class Player : MonoBehaviour
         print("heal " + cardData.healPower);
         _health.HealDamage(cardData.healPower);
         _healVfx.Play();
+        PlayerEvents.PlayerHealed();
     }
 
     private void Attack(CardData cardData)

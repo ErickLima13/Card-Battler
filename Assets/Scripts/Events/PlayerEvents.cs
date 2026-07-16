@@ -11,6 +11,10 @@ public static class PlayerEvents
 
     public static event Action OnDrawCardRequested;
 
+    public static event Action OnReshufleResquested;
+
+    public static event Action OnPlayerHealed;
+
     public static void CardPlayerd(CardData cardData)
     {
         OnCardPlayed?.Invoke(cardData);
@@ -29,5 +33,15 @@ public static class PlayerEvents
     public static void DrawCardRequest()
     {
         OnDrawCardRequested?.Invoke();
+    }
+
+    public static void PlayerHealed()
+    {
+        OnPlayerHealed?.Invoke();
+    }
+
+    public static void ReshufleResquested()
+    {
+        OnReshufleResquested?.Invoke();
     }
 }

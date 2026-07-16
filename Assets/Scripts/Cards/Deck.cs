@@ -9,6 +9,8 @@ public class Deck : MonoBehaviour
 
     [SerializeField] private GameObject _cardBack;
 
+    [SerializeField] private DiscardPile _discardPile;
+
     private void Start()
     {
         Shuffle();
@@ -22,6 +24,7 @@ public class Deck : MonoBehaviour
             int topIndex = _drawPile.Count - 1;
             CardData data = _drawPile[topIndex];
             _drawPile.RemoveAt(topIndex);
+            DrawVisuals();
             return data;
         }
 
@@ -30,9 +33,15 @@ public class Deck : MonoBehaviour
 
     private void DrawVisuals()
     {
+        foreach (Transform discardedCard in transform)
+        {
+            Destroy(discardedCard.gameObject);
+        }
+
         for (int i = 0; i < _drawPile.Count; i++)
         {
             GameObject newCardBack = Instantiate(_cardBack, transform);
+            newCardBack.GetComponent<SpriteRenderer>().sortingOrder = i;
             newCardBack.transform.localPosition = new(0, i * _verticalSpace, 0);
         }
     }
@@ -48,6 +57,13 @@ public class Deck : MonoBehaviour
         }
     }
 
+    public void ReshufleFromDiscardPile()
+    {
+        _discardPile.MoveCardsToDeck(_drawPile);
+        Shuffle();
+        DrawVisuals();
+    }
+
     private void OnMouseDown()
     {
         if (_drawPile.Count <= 0)
@@ -56,7 +72,7 @@ public class Deck : MonoBehaviour
             return;
         }
 
-        if (TurnSystem.Instance.HasReimainingAction())
+        if (TurnSystem.Instance.HasReimainingAction() || TurnSystem.Instance.CanDrawCard())
         {
             PlayerEvents.DrawCardRequest();
         }
