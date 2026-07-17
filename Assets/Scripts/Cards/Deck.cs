@@ -68,7 +68,7 @@ public class Deck : MonoBehaviour
     {
         if (_drawPile.Count <= 0)
         {
-            print("no cards left in deck");
+            GameManager.Instance.SetMessageGame("No cards left in deck");
             return;
         }
 

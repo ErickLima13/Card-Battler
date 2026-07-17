@@ -49,4 +49,16 @@ public class GameManager : Singleton<GameManager>
         PlayerEvents.OnPlayerDeath -= PlayerLose;
         BossEvents.OnBossDeath -= PlayerWin;
     }
+
+    public void SetMessageGame(string message)
+    {
+        _winLoseDisplay.text = message;
+        StartCoroutine(CleanUpText());
+    }
+
+    private IEnumerator CleanUpText()
+    {
+        yield return new WaitForSeconds(1f);
+        _winLoseDisplay.text = "";
+    }
 }

@@ -27,7 +27,7 @@ public class PlayerHand : MonoBehaviour
     {
         if (_cardsSlots == null || _cardsInHand.Count >= _cardsSlots.Length)
         {
-            print("hands is full or slots are null");
+            GameManager.Instance.SetMessageGame("Hands is full or slots are null");
             return;
         }
 
@@ -35,7 +35,6 @@ public class PlayerHand : MonoBehaviour
 
         if (cardData == null)
         {
-            print("no cards left in deck");
             return;
         }
 
@@ -54,6 +53,12 @@ public class PlayerHand : MonoBehaviour
 
     public void PlayCard(Card card)
     {
+        if (TurnSystem.Instance.CanPlayCard(card.CardData.actionCost))
+        {
+            GameManager.Instance.SetMessageGame("Insuficient actions point");
+            return;
+        }
+
         _cardsInHand.Remove(card);
         _discardPile.DiscardCard(card.CardData);
         Destroy(card.gameObject);

@@ -83,6 +83,8 @@ public class TurnSystem : Singleton<TurnSystem>
 
     public bool CanDrawCard() => _remainingAction >= _drawConsume;
 
+    public bool CanPlayCard(int cost) => _remainingAction < cost;
+
     public bool CanReshufleDiscard() => _remainingAction >= _reshufleConsume;
 
     private void ReshufleRequested()

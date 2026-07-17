@@ -55,6 +55,10 @@ public class DiscardPile : MonoBehaviour
             PlayerEvents.ReshufleResquested();
             _deck.ReshufleFromDiscardPile();
         }
+        else
+        {
+            GameManager.Instance.SetMessageGame("Insuficient actions point");
+        }
 
     }
 }
