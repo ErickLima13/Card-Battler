@@ -841,6 +841,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::Health
   _totalHealth: 5
   _healthText: {fileID: 844106345}
+  _poisonText: {fileID: 942943626}
   _healthBar: {fileID: 844106346}
   poisonCount: 0
 --- !u!4 &440299067
@@ -1939,6 +1940,10 @@ PrefabInstance:
       propertyPath: m_Camera
       value: 
       objectReference: {fileID: 519420031}
+    - target: {fileID: 7395073126812828943, guid: 7caa4ee2f8d815f4abd916f4e7f4ac46, type: 3}
+      propertyPath: m_PresetInfoIsWorld
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 8944370672890056792, guid: 7caa4ee2f8d815f4abd916f4e7f4ac46, type: 3}
       propertyPath: m_Pivot.x
       value: 0.5
@@ -2323,6 +2328,17 @@ Transform:
   - {fileID: 844106344}
   m_Father: {fileID: 440299067}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &942943626 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 8430378376852495534, guid: 7caa4ee2f8d815f4abd916f4e7f4ac46, type: 3}
+  m_PrefabInstance: {fileID: 844106343}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Unity.TextMeshPro::TMPro.TextMeshProUGUI
 --- !u!1 &977035693
 GameObject:
   m_ObjectHideFlags: 0
@@ -2444,6 +2460,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::Health
   _totalHealth: 50
   _healthText: {fileID: 613840041}
+  _poisonText: {fileID: 0}
   _healthBar: {fileID: 829648768}
   poisonCount: 0
 --- !u!1 &987587500
@@ -3014,7 +3031,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 4.09, y: 0.19, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 2, y: 2, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}

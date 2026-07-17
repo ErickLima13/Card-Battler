@@ -50,25 +50,18 @@ public class Boss : MonoBehaviour
         }
     }
 
-    private void Attack()
+    private void BossStartTurn()
     {
-        CheckPoison();
+        StartCoroutine(CheckPoison());
 
         if (_health.Dead())
         {
             return;
         }
-
-        StartCoroutine(BossAttackAnimation());
     }
 
     private IEnumerator BossAttackAnimation()
     {
-        if (_health.poisonCount > 0)
-        {
-            yield return new WaitForSeconds(0.5f);
-        }
-
         Vector3 targetPosition = _originalPosition + new Vector3(-4.5f, 0, 0);
 
         float duration = 0.5f;
@@ -116,18 +109,28 @@ public class Boss : MonoBehaviour
         _health.SetPoison(poison);
     }
 
-    public void CheckPoison()
+    public IEnumerator CheckPoison()
     {
         if (_health.poisonCount > 0)
         {
             _health.TakeDamage(1);
             Damage();
-            _health.poisonCount--;
+            yield return new WaitForSeconds(0.5f);
+            _health.poisonCount--;        
+
+           
         }
         else if( _poisonCounter != null) 
         {
             _poisonCounter.SetActive(false);
         }
+
+        
+        _health.UpdatePoisonCounter(_health.poisonCount.ToString());
+
+        CheckPoisonEndTurn();
+
+        StartCoroutine(BossAttackAnimation());
     }
 
     private void CheckPoisonEndTurn()
@@ -135,13 +138,14 @@ public class Boss : MonoBehaviour
         if (_health.poisonCount <= 0)
         {
             _poisonCounter.SetActive(false);
+            _health.UpdatePoisonCounter("");
         }
     }
 
     private void OnEnable()
     {
         BossEvents.OnBossHit += HandleBossHit;
-        TurnEvents.OnBossTurnStart += Attack;
+        TurnEvents.OnBossTurnStart += BossStartTurn;
         BossEvents.OnApplyPoison += SetPoison;
         TurnEvents.OnBossTurnEnd += CheckPoisonEndTurn;
 
@@ -150,7 +154,7 @@ public class Boss : MonoBehaviour
     private void OnDisable()
     {
         BossEvents.OnBossHit -= HandleBossHit;
-        TurnEvents.OnBossTurnStart -= Attack;
+        TurnEvents.OnBossTurnStart -= BossStartTurn;
         BossEvents.OnApplyPoison -= SetPoison;
         TurnEvents.OnBossTurnEnd -= CheckPoisonEndTurn;
 

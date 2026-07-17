@@ -8,6 +8,7 @@ public class Health : MonoBehaviour
     [SerializeField] private int _totalHealth = 100;
 
     [SerializeField] private TextMeshProUGUI _healthText;
+    [SerializeField] private TextMeshProUGUI _poisonText;
 
     [SerializeField] private Slider _healthBar;
 
@@ -75,5 +76,11 @@ public class Health : MonoBehaviour
     public void SetPoison(int poison)
     {
         poisonCount += poison;
+        UpdatePoisonCounter(poisonCount.ToString());
+    }
+
+    public void UpdatePoisonCounter(string value)
+    {
+        _poisonText.text = value;
     }
 }
