@@ -456,6 +456,37 @@ Transform:
   m_Children: []
   m_Father: {fileID: 2033100349}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &139185271
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 139185272}
+  m_Layer: 0
+  m_Name: PoisonCounterPos
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &139185272
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 139185271}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 29.057148, y: 1.171428, z: 0}
+  m_LocalScale: {x: 14.285715, y: 14.285715, z: 14.285715}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 844106344}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &173841362
 GameObject:
   m_ObjectHideFlags: 0
@@ -769,8 +800,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 440299067}
-  - component: {fileID: 440299066}
   - component: {fileID: 440299065}
+  - component: {fileID: 440299066}
   m_Layer: 0
   m_Name: Boss
   m_TagString: Untagged
@@ -792,6 +823,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::Boss
   _bossVisual: {fileID: 926182102}
   _attackDamage: 1
+  _poisonCounterPosition: {fileID: 139185272}
+  _poisonHitPosition: {fileID: 1271899770}
+  _poisonPrefab: {fileID: 1626477230281708932, guid: d688b2063a31ee848aed2c6050f1cba7, type: 3}
+  _poisonCounter: {fileID: 0}
 --- !u!114 &440299066
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -807,6 +842,7 @@ MonoBehaviour:
   _totalHealth: 5
   _healthText: {fileID: 844106345}
   _healthBar: {fileID: 844106346}
+  poisonCount: 0
 --- !u!4 &440299067
 Transform:
   m_ObjectHideFlags: 0
@@ -1989,7 +2025,10 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
-    m_AddedGameObjects: []
+    m_AddedGameObjects:
+    - targetCorrespondingSourceObject: {fileID: 8944370672890056792, guid: 7caa4ee2f8d815f4abd916f4e7f4ac46, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 139185272}
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 7caa4ee2f8d815f4abd916f4e7f4ac46, type: 3}
 --- !u!224 &844106344 stripped
@@ -2406,6 +2445,7 @@ MonoBehaviour:
   _totalHealth: 50
   _healthText: {fileID: 613840041}
   _healthBar: {fileID: 829648768}
+  poisonCount: 0
 --- !u!1 &987587500
 GameObject:
   m_ObjectHideFlags: 0
@@ -2948,6 +2988,37 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0, y: 0}
+--- !u!1 &1271899769
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1271899770}
+  m_Layer: 0
+  m_Name: PoisonHit
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1271899770
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1271899769}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 4.09, y: 0.19, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1440792716
 GameObject:
   m_ObjectHideFlags: 0
@@ -3302,8 +3373,11 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 452a0744fdfd90444b3d22d354288723, type: 2}
   - {fileID: 11400000, guid: e1075919f83b8944180c2753853fa997, type: 2}
   - {fileID: 11400000, guid: 68c5a15c5b46fb347b8b119a64cc3649, type: 2}
+  - {fileID: 11400000, guid: 4f5dd988aaa628845895583408a8846f, type: 2}
+  - {fileID: 11400000, guid: 4f5dd988aaa628845895583408a8846f, type: 2}
   _cardBack: {fileID: 3683840490531274279, guid: 9639cb6a174ea7742b1c3f4cd12a9d6e, type: 3}
   _discardPile: {fileID: 433741366}
+  _playerHand: {fileID: 977035695}
 --- !u!4 &1913185377
 Transform:
   m_ObjectHideFlags: 0
@@ -3417,6 +3491,8 @@ MonoBehaviour:
   _reshufleConsume: 2
   _remainingActionText: {fileID: 1998892443}
   _turnDisplayText: {fileID: 608359813}
+  playerTurnAccount: 0
+  bossTurnAccount: 0
 --- !u!1 &1998892441
 GameObject:
   m_ObjectHideFlags: 0
@@ -3834,3 +3910,4 @@ SceneRoots:
   - {fileID: 1239471915}
   - {fileID: 987138408}
   - {fileID: 440299067}
+  - {fileID: 1271899770}

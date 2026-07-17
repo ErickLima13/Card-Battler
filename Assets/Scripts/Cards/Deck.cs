@@ -11,6 +11,8 @@ public class Deck : MonoBehaviour
 
     [SerializeField] private DiscardPile _discardPile;
 
+    [SerializeField] private PlayerHand _playerHand;
+
     private void Start()
     {
         Shuffle();
@@ -66,9 +68,9 @@ public class Deck : MonoBehaviour
 
     private void OnMouseDown()
     {
-        if (_drawPile.Count <= 0)
+        if (_drawPile.Count <= 0 || _playerHand.CanConsumeAction())
         {
-            GameManager.Instance.SetMessageGame("No cards left in deck");
+            GameManager.Instance.SetMessageGame("Hands is full or no cards left in deck");
             return;
         }
 

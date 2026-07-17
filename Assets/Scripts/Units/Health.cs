@@ -1,3 +1,4 @@
+using FGT.Prototypes.DamagePopup;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
@@ -14,6 +15,8 @@ public class Health : MonoBehaviour
 
 
     private bool _isDied;
+
+    public int poisonCount;
 
     public bool Dead() => _isDied;
 
@@ -36,6 +39,9 @@ public class Health : MonoBehaviour
     {
         if (amount <= 0) return;
 
+        string temp = "+ " + amount;
+        DamagePopup.Create($"{temp}", Vector3.up, transform, Color.red, 20);
+
         _currentHealth += amount;
 
         if(_currentHealth  > _totalHealth)
@@ -51,6 +57,9 @@ public class Health : MonoBehaviour
     {
         if (amount <= 0) return;
 
+        string temp = "+ " + amount;
+        DamagePopup.Create($"{temp}", Vector3.up, transform, Color.red, 20);
+
         _currentHealth -= amount;
 
         if(_currentHealth <= 0)
@@ -60,5 +69,11 @@ public class Health : MonoBehaviour
         }
 
         UpdateHealthUI();
+
+    }
+
+    public void SetPoison(int poison)
+    {
+        poisonCount += poison;
     }
 }

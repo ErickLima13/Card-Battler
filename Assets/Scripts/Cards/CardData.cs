@@ -10,6 +10,8 @@ public class CardData : ScriptableObject
     public int attackPower;
     public int healPower;
 
+    public int poisonPower;
+
     public Sprite illustration;
 
 

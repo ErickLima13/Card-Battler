@@ -22,6 +22,9 @@ public class TurnSystem : Singleton<TurnSystem>
 
     [SerializeField] private TextMeshProUGUI _turnDisplayText;
 
+    public int playerTurnAccount;
+    public int bossTurnAccount;
+
     private void Start()
     {
         SetDisplay("Player's Turn");
@@ -30,6 +33,7 @@ public class TurnSystem : Singleton<TurnSystem>
 
     private void StartPlayerTurn()
     {
+        playerTurnAccount++;
         _currentTurn = TurnState.PlayerTurn;
         _remainingAction = _maxAction;
         UpdateActionsUI();
@@ -44,6 +48,7 @@ public class TurnSystem : Singleton<TurnSystem>
 
     private IEnumerator StartBossTurn()
     {
+        bossTurnAccount++;
         _currentTurn = TurnState.BossTurn;
         yield return new WaitForSeconds(1);
         BossTurn();

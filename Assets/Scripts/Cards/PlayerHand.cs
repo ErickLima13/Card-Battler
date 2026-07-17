@@ -15,6 +15,8 @@ public class PlayerHand : MonoBehaviour
 
     [SerializeField] private DiscardPile _discardPile;
 
+    public bool CanConsumeAction() => _cardsSlots == null || _cardsInHand.Count >= _cardsSlots.Length;
+
     private void Start()
     {
         for (int i = 0; i < _startingHandSize; i++)
@@ -27,7 +29,6 @@ public class PlayerHand : MonoBehaviour
     {
         if (_cardsSlots == null || _cardsInHand.Count >= _cardsSlots.Length)
         {
-            GameManager.Instance.SetMessageGame("Hands is full or slots are null");
             return;
         }
 
