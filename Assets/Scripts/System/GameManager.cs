@@ -10,14 +10,24 @@ public class GameManager : Singleton<GameManager>
 
     [SerializeField] private TextMeshProUGUI _winLoseDisplay;
 
+    public bool IsGameActive { get; private set; }
+
+
+    private void Start()
+    {
+        IsGameActive = true;
+    }
+
     private void PlayerWin()
     {
+        IsGameActive = false;
         _winLoseDisplay.text = "You defeat the boss!";
         StartCoroutine(RestartGame());
     }
 
     private void PlayerLose()
     {
+        IsGameActive = false;
         _winLoseDisplay.text = "Game Over!";
         StartCoroutine(RestartGame());
     }
@@ -25,7 +35,6 @@ public class GameManager : Singleton<GameManager>
     private IEnumerator RestartGame()
     {
         yield return new WaitForSeconds(_transitionTime);
-
         SceneManager.LoadScene("Game");
     }
 

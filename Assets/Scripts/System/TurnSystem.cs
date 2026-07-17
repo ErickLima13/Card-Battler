@@ -6,6 +6,10 @@ using UnityEngine;
 
 public class TurnSystem : Singleton<TurnSystem>
 {
+    private enum TurnState { PlayerTurn,BossTurn}
+
+    [SerializeField] private TurnState _currentTurn = TurnState.PlayerTurn;
+
     [SerializeField] private float _turnWaitTime = 2f;
 
     [SerializeField] private int _maxAction;
@@ -14,16 +18,65 @@ public class TurnSystem : Singleton<TurnSystem>
     [SerializeField] private int _drawConsume = 1;
     [SerializeField] private int _reshufleConsume = 2;
 
-
-
     [SerializeField] private TextMeshProUGUI _remainingActionText;
+
+    [SerializeField] private TextMeshProUGUI _turnDisplayText;
 
     private void Start()
     {
-        _remainingAction = _maxAction;
+        SetDisplay("Player's Turn");
+        StartPlayerTurn();        
+    }
 
+    private void StartPlayerTurn()
+    {
+        _currentTurn = TurnState.PlayerTurn;
+        _remainingAction = _maxAction;
         UpdateActionsUI();
         TurnEvents.PlayerTurnStart();
+    }
+
+    private void EndPlayerTurn()
+    {
+        TurnEvents.PlayerTurnEnd();
+        StartCoroutine(WaitBetweenTurns());
+    }
+
+    private IEnumerator StartBossTurn()
+    {
+        _currentTurn = TurnState.BossTurn;
+        yield return new WaitForSeconds(1);
+        BossTurn();
+    }
+
+    private IEnumerator EndBossTurn()
+    {   
+        TurnEvents.BossTurnEnd();
+        yield return new WaitForSeconds(1);
+        StartCoroutine(WaitBetweenTurns());
+    }
+
+    private IEnumerator WaitBetweenTurns()
+    {
+        for(int i = (int)_turnWaitTime; i >= 0; i--)
+        {
+            SetDisplay(i + "...");
+            yield return new WaitForSeconds(1);
+        }
+
+        if (GameManager.Instance.IsGameActive)
+        {
+            if (_currentTurn != TurnState.PlayerTurn)
+            {
+                SetDisplay("Player's Turn");
+                StartPlayerTurn();
+            }
+            else
+            {
+                SetDisplay("Boss's Turn");
+                StartCoroutine(StartBossTurn());
+            }
+        }
     }
 
     public bool HasReimainingAction() => _remainingAction > 0;
@@ -58,8 +111,7 @@ public class TurnSystem : Singleton<TurnSystem>
 
         if (_remainingAction <= 0)
         {
-            TurnEvents.PlayerTurnEnd();
-            StartCoroutine(BossTurn());
+            EndPlayerTurn();
         }
     }
 
@@ -68,21 +120,20 @@ public class TurnSystem : Singleton<TurnSystem>
         ConsumeAction(cardData.actionCost);
     }
 
-    private IEnumerator BossTurn()
+    private void BossTurn()
     {
-        yield return new WaitForSeconds(_turnWaitTime);
         TurnEvents.BossTurnStart();
-        yield return new WaitForSeconds(_turnWaitTime);
-
-        
-        _remainingAction = _maxAction;
-        UpdateActionsUI();
-        TurnEvents.PlayerTurnStart();
+        StartCoroutine(EndBossTurn());
     }
 
     private void UpdateActionsUI()
     {
         _remainingActionText.text = _remainingAction.ToString() + "/" + _maxAction;
+    }
+
+    private void SetDisplay(string value)
+    {
+        _turnDisplayText.text = value;
     }
 
     private void OnEnable()
