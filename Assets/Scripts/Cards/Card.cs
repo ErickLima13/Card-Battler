@@ -1,21 +1,13 @@
-using TMPro;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.Rendering;
-using static UnityEngine.Tilemaps.TilemapRenderer;
 
-public class Card : MonoBehaviour
+public class Card : BaseCard
 {
     private Vector3 _originalScale;
     private Vector3 _originalPosition;
 
     private int _originalSortOrder;
-
-    [SerializeField] private SpriteRenderer _illustrationRender;
-
-    [SerializeField] private TextMeshPro _cardName;
-    [SerializeField] private TextMeshPro _description;
-    [SerializeField] private TextMeshPro _actionCost;
 
     [SerializeField] private SortingGroup _sortingGroup;
     [SerializeField] private Collider2D _cardCollider;
@@ -24,9 +16,6 @@ public class Card : MonoBehaviour
     [SerializeField] private float _hoverOffset = 3;
 
     private static bool _isBeingDragged;
-
-    public CardData CardData { get; private set; }
-
 
     private void Start()
     {
@@ -51,21 +40,12 @@ public class Card : MonoBehaviour
         _cardCollider.enabled = value;
     }
 
-    public void LoadCardData(CardData data)
-    {
-        CardData = data;
-        _illustrationRender.sprite = data.illustration;
-        _cardName.text = data.cardName;
-        _description.text = data.description;
-        _actionCost.text = data.actionCost.ToString();
-    }
-
     private void OnMouseEnter()
     {
         if (_isBeingDragged) return;
 
         transform.localScale = _originalScale * _hoverScale;
-        transform.localPosition += new Vector3(0,_hoverOffset,0);
+        transform.localPosition += new Vector3(0, _hoverOffset, 0);
         _sortingGroup.sortingOrder += 1;
     }
 

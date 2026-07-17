@@ -40,11 +40,10 @@ public class PlayerHand : MonoBehaviour
         }
 
         int slotIndex = _cardsInHand.Count;
-        GameObject newCard = Instantiate(_cardPrefab, _cardsSlots[slotIndex].position, Quaternion.identity);
-        Card cardComponent = newCard.GetComponent<Card>();
-        cardComponent.LoadCardData(cardData);
+
+        CreateCard.CreateSetupCard(_cardPrefab, _cardsSlots[slotIndex].transform, cardData, out GameObject newCard, out Card cardComponent);
+
         _cardsInHand.Add(cardComponent);
-        _cardsInHand[slotIndex].transform.SetParent(_cardsSlots[slotIndex]);
 
         if (!TurnSystem.Instance.HasReimainingAction())
         {

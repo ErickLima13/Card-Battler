@@ -117,8 +117,6 @@ public class Boss : MonoBehaviour
             Damage();
             yield return new WaitForSeconds(0.5f);
             _health.poisonCount--;        
-
-           
         }
         else if( _poisonCounter != null) 
         {
@@ -130,7 +128,10 @@ public class Boss : MonoBehaviour
 
         CheckPoisonEndTurn();
 
-        StartCoroutine(BossAttackAnimation());
+        if (!_health.Dead())
+        {
+            StartCoroutine(BossAttackAnimation());
+        } 
     }
 
     private void CheckPoisonEndTurn()
