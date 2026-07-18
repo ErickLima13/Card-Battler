@@ -3,8 +3,6 @@ using UnityEngine;
 
 public class DeckUI : MonoBehaviour
 {
-    [SerializeField] private List<CardData> _tempDeck;
-
     [SerializeField] private Transform _cardSlot;
 
     [SerializeField] private GameObject _cardTabPrefab;
@@ -12,11 +10,6 @@ public class DeckUI : MonoBehaviour
     private List<GameObject> _cardTabGameObjects = new();
 
     private const float VERTICAL_SPACING = 0.65f;
-
-    private void Start()
-    {
-        BuildUI();
-    }
 
     private void BuildUI()
     {
@@ -27,29 +20,24 @@ public class DeckUI : MonoBehaviour
 
         _cardTabGameObjects.Clear();
 
-        for (int i = 0; i < _tempDeck.Count; i++)
+        List<CardData> deck = DeckManager.Instance.CurrentDeck;
+
+        for (int i = 0; i < deck.Count; i++)
         {
-            CreateCard.CreateSetupCard(_cardTabPrefab, _cardSlot, _tempDeck[i], out GameObject newCard, out BaseCard tempCard);
+            CreateCard.CreateSetupCard(_cardTabPrefab, _cardSlot, deck[i], out GameObject newCard, out BaseCard tempCard);
             newCard.transform.localPosition = new(0, -i * VERTICAL_SPACING, 0);
             _cardTabGameObjects.Add(newCard);
         }
     }
 
-    private void RemoveFromDeck(CardData cardData)
-    {
-        _tempDeck.Remove(cardData);
-        BuildUI();
-    }
-
     private void OnEnable()
     {
-        DeckEvents.OnRemoveFromDeck += RemoveFromDeck;
+        DeckEvents.OnDeckProcessed += BuildUI;
     }
 
     private void OnDisable()
     {
-        DeckEvents.OnRemoveFromDeck -= RemoveFromDeck;
-
+        DeckEvents.OnDeckProcessed -= BuildUI;
     }
 
 }
