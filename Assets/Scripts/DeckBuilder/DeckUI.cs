@@ -9,15 +9,47 @@ public class DeckUI : MonoBehaviour
 
     [SerializeField] private GameObject _cardTabPrefab;
 
+    private List<GameObject> _cardTabGameObjects = new();
+
     private const float VERTICAL_SPACING = 0.65f;
 
     private void Start()
     {
-        for(int i  = 0; i < _tempDeck.Count; i++)
+        BuildUI();
+    }
+
+    private void BuildUI()
+    {
+        foreach(GameObject tab in _cardTabGameObjects)
         {
-            CreateCard.CreateSetupCard(_cardTabPrefab, _cardSlot, _tempDeck[i], out GameObject newCard, out BaseCard tempCard);
-            newCard.transform.localPosition = new(0, -i * VERTICAL_SPACING, 0); 
+            Destroy(tab);
         }
 
+        _cardTabGameObjects.Clear();
+
+        for (int i = 0; i < _tempDeck.Count; i++)
+        {
+            CreateCard.CreateSetupCard(_cardTabPrefab, _cardSlot, _tempDeck[i], out GameObject newCard, out BaseCard tempCard);
+            newCard.transform.localPosition = new(0, -i * VERTICAL_SPACING, 0);
+            _cardTabGameObjects.Add(newCard);
+        }
     }
+
+    private void RemoveFromDeck(CardData cardData)
+    {
+        _tempDeck.Remove(cardData);
+        BuildUI();
+    }
+
+    private void OnEnable()
+    {
+        DeckEvents.OnRemoveFromDeck += RemoveFromDeck;
+    }
+
+    private void OnDisable()
+    {
+        DeckEvents.OnRemoveFromDeck -= RemoveFromDeck;
+
+    }
+
 }
