@@ -9,9 +9,6 @@ public class Card : BaseCard
 
     private int _originalSortOrder;
 
-    [SerializeField] private SortingGroup _sortingGroup;
-    [SerializeField] private Collider2D _cardCollider;
-
     [SerializeField] private float _hoverScale = 2;
     [SerializeField] private float _hoverOffset = 3;
 
@@ -22,22 +19,6 @@ public class Card : BaseCard
         _originalScale = transform.localScale;
         _originalSortOrder = _sortingGroup.sortingOrder;
         _originalPosition = transform.localPosition;
-    }
-
-    public void CardInDiscardZone(int sortOrder)
-    {
-        SetOrderCard(sortOrder);
-        ActiveCard(false);
-    }
-
-    public void SetOrderCard(int sortOrder)
-    {
-        _sortingGroup.sortingOrder = sortOrder;
-    }
-
-    public void ActiveCard(bool value)
-    {
-        _cardCollider.enabled = value;
     }
 
     private void OnMouseEnter()

@@ -19,7 +19,7 @@ public class DiscardPile : MonoBehaviour
 
     private void DrawDiscard(CardData cardData)
     {
-        CreateCard.CreateSetupCard(_cardPrefab,transform, cardData, out GameObject newCard, out Card tempCard);
+        CreateCard.CreateSetupCard(_cardPrefab,transform, cardData, out GameObject newCard, out BaseCard tempCard);
 
         int indexCard = _discardPile.Count - 1;
         tempCard.CardInDiscardZone(indexCard);

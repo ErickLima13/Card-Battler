@@ -116,15 +116,13 @@ public class Boss : MonoBehaviour
             _health.TakeDamage(1);
             Damage();
             yield return new WaitForSeconds(0.5f);
-            _health.poisonCount--;        
+            _health.poisonCount--;
+            _health.UpdatePoisonCounter(_health.poisonCount.ToString());
         }
         else if( _poisonCounter != null) 
         {
             _poisonCounter.SetActive(false);
-        }
-
-        
-        _health.UpdatePoisonCounter(_health.poisonCount.ToString());
+        } 
 
         CheckPoisonEndTurn();
 
@@ -136,10 +134,13 @@ public class Boss : MonoBehaviour
 
     private void CheckPoisonEndTurn()
     {
-        if (_health.poisonCount <= 0)
+        if( _poisonCounter != null)
         {
-            _poisonCounter.SetActive(false);
-            _health.UpdatePoisonCounter("");
+            if (_health.poisonCount <= 0)
+            {
+                _poisonCounter.SetActive(false);
+                _health.UpdatePoisonCounter("");
+            }
         }
     }
 

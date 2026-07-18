@@ -23,7 +23,7 @@ public class CardCollection : MonoBehaviour
         //Card cardComponent = card.GetComponent<Card>();
         //cardComponent.LoadCardData(_availableCards[cardIndex]);
 
-        CreateCard.CreateSetupCard(_cardPrefab, _cardSlots[cardIndex].transform, _availableCards[cardIndex], out GameObject card, out Card cardComponent);
+        CreateCard.CreateSetupCard(_cardPrefab, _cardSlots[cardIndex].transform, _availableCards[cardIndex], out GameObject card, out BaseCard cardComponent);
 
     }
 }

@@ -11,7 +11,7 @@ public class PlayerHand : MonoBehaviour
 
     [SerializeField] private int _startingHandSize = 2;
 
-    [SerializeField] private List<Card> _cardsInHand = new();
+    [SerializeField] private List<BaseCard> _cardsInHand = new();
 
     [SerializeField] private DiscardPile _discardPile;
 
@@ -41,7 +41,7 @@ public class PlayerHand : MonoBehaviour
 
         int slotIndex = _cardsInHand.Count;
 
-        CreateCard.CreateSetupCard(_cardPrefab, _cardsSlots[slotIndex].transform, cardData, out GameObject newCard, out Card cardComponent);
+        CreateCard.CreateSetupCard(_cardPrefab, _cardsSlots[slotIndex].transform, cardData, out GameObject newCard, out BaseCard cardComponent);
 
         _cardsInHand.Add(cardComponent);
 
