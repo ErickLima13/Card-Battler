@@ -1,3 +1,4 @@
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -14,6 +15,9 @@ public class PlayerHand : MonoBehaviour
     [SerializeField] private List<BaseCard> _cardsInHand = new();
 
     [SerializeField] private DiscardPile _discardPile;
+
+    [SerializeField] private float cardHoldTime = .3f;
+
 
     public bool CanConsumeAction() => _cardsSlots == null || _cardsInHand.Count >= _cardsSlots.Length;
 
@@ -50,6 +54,21 @@ public class PlayerHand : MonoBehaviour
             cardComponent.ActiveCard(false);
         }
     }
+    private IEnumerator PlayCardWithDelay(Card card)
+    {
+        DisableHand();
+        card.IsPlaying =true;
+
+        _cardsInHand.Remove(card);
+        _discardPile.DiscardCard(card.CardData);
+
+        PlayerEvents.CardPlayed(card.CardData);
+
+        yield return new WaitForSeconds(cardHoldTime);
+
+        Destroy(card.gameObject);
+        RepositionCards();
+    }
 
     public void PlayCard(Card card)
     {
@@ -59,14 +78,11 @@ public class PlayerHand : MonoBehaviour
             return;
         }
 
-        _cardsInHand.Remove(card);
-        _discardPile.DiscardCard(card.CardData);
-        Destroy(card.gameObject);
-        RepositionCard();
-        PlayerEvents.CardPlayerd(card.CardData);
+        StartCoroutine(PlayCardWithDelay(card));
     }
 
-    private void RepositionCard()
+
+    private void RepositionCards()
     {
         for(int i = 0; i < _cardsInHand.Count; i++)
         {
@@ -102,6 +118,7 @@ public class PlayerHand : MonoBehaviour
         TurnEvents.OnPlayerTurnStart += EnableHand;
 
         PlayerEvents.OnDrawCardRequested += DrawNextCard;
+        PlayerEvents.OnAttackComplete += EnableHand;
     }
 
     private void OnDisable()
@@ -110,5 +127,6 @@ public class PlayerHand : MonoBehaviour
         TurnEvents.OnPlayerTurnStart -= EnableHand;
 
         PlayerEvents.OnDrawCardRequested -= DrawNextCard;
+        PlayerEvents.OnAttackComplete -= EnableHand;
     }
 }

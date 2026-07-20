@@ -42,6 +42,7 @@ public class Player : MonoBehaviour
         if(cardData.poisonPower > 0)
         {
             BossEvents.ApplyPoison(cardData.poisonPower);
+            PlayerEvents.AttackComplete();
         }
     }
 
@@ -50,6 +51,9 @@ public class Player : MonoBehaviour
         _health.HealDamage(cardData.healPower);
         _healVfx.Play();
         PlayerEvents.PlayerHealed();
+
+        PlayerEvents.AttackComplete();
+
     }
 
     private void Attack(CardData cardData)
@@ -85,6 +89,8 @@ public class Player : MonoBehaviour
 
             _visualAnimator.Play("returnPlayer");
         }
+
+        PlayerEvents.AttackComplete();
 
         yield return null;
     }

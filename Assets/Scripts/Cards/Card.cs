@@ -1,3 +1,4 @@
+using System.Collections;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.Rendering;
@@ -9,10 +10,13 @@ public class Card : BaseCard
 
     private int _originalSortOrder;
 
+    private static bool _isBeingDragged;
+
     [SerializeField] private float _hoverScale = 2;
     [SerializeField] private float _hoverOffset = 3;
 
-    private static bool _isBeingDragged;
+
+    public bool IsPlaying { get; set; }
 
     private void Start()
     {
@@ -55,6 +59,9 @@ public class Card : BaseCard
     private void OnMouseUp()
     {
         _isBeingDragged = false;
+
+        if (IsPlaying) return;
+
         transform.localScale = _originalScale * _hoverScale;
         transform.localPosition += new Vector3(0, _hoverOffset, 0);
         _sortingGroup.sortingOrder += 1;

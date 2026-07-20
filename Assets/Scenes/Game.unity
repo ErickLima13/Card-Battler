@@ -419,7 +419,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e918d059741fdef4993d023743df733b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Health
-  _totalHealth: 5
+  _totalHealth: 50
   _healthText: {fileID: 844106345}
   _poisonText: {fileID: 942943626}
   _healthBar: {fileID: 844106346}
@@ -1769,6 +1769,7 @@ MonoBehaviour:
   _startingHandSize: 2
   _cardsInHand: []
   _discardPile: {fileID: 433741366}
+  cardHoldTime: 0.3
 --- !u!1 &987138407
 GameObject:
   m_ObjectHideFlags: 0

@@ -15,7 +15,9 @@ public static class PlayerEvents
 
     public static event Action OnPlayerHealed;
 
-    public static void CardPlayerd(CardData cardData)
+    public static event Action OnAttackComplete;
+
+    public static void CardPlayed(CardData cardData)
     {
         OnCardPlayed?.Invoke(cardData);
     }
@@ -43,5 +45,10 @@ public static class PlayerEvents
     public static void ReshufleResquested()
     {
         OnReshufleResquested?.Invoke();
+    }
+
+    public static void AttackComplete()
+    {
+        OnAttackComplete?.Invoke();
     }
 }
