@@ -1,0 +1,74 @@
+using System.Collections;
+using UnityEngine;
+using UnityEngine.InputSystem;
+using UnityEngine.Rendering;
+
+public class Card : BaseCard
+{
+    private Vector3 _originalScale;
+    private Vector3 _originalPosition;
+
+    private int _originalSortOrder;
+
+    private static bool _isBeingDragged;
+
+    [SerializeField] private float _hoverScale = 2;
+    [SerializeField] private float _hoverOffset = 3;
+
+
+    public bool IsPlaying { get; set; }
+
+    private void Start()
+    {
+        _originalScale = transform.localScale;
+        _originalSortOrder = _sortingGroup.sortingOrder;
+        _originalPosition = transform.localPosition;
+    }
+
+    private void OnMouseEnter()
+    {
+        if (_isBeingDragged) return;
+
+        transform.localScale = _originalScale * _hoverScale;
+        transform.localPosition += new Vector3(0, _hoverOffset, 0);
+        _sortingGroup.sortingOrder += 1;
+    }
+
+    private void OnMouseExit()
+    {
+        if (_isBeingDragged) return;
+
+        transform.localScale = _originalScale;
+        transform.localPosition = _originalPosition;
+        _sortingGroup.sortingOrder = _originalSortOrder;
+    }
+
+    private void OnMouseDrag()
+    {
+        _isBeingDragged = true;
+        gameObject.transform.position = GetMousePosition();
+    }
+
+    private Vector3 GetMousePosition()
+    {
+        Vector3 mousePosition = Mouse.current.position.ReadValue();
+        mousePosition.z = transform.position.z - Camera.main.transform.position.z;
+        return Camera.main.ScreenToWorldPoint(mousePosition);
+    }
+
+    private void OnMouseUp()
+    {
+        _isBeingDragged = false;
+
+        if (IsPlaying) return;
+
+        transform.localScale = _originalScale * _hoverScale;
+        transform.localPosition += new Vector3(0, _hoverOffset, 0);
+        _sortingGroup.sortingOrder += 1;
+    }
+
+    private void OnDestroy()
+    {
+        _isBeingDragged = false;
+    }
+}
