@@ -4,10 +4,18 @@ using UnityEngine;
 
 public class DeckManager : Singleton<DeckManager>
 {
-    public List<CardData> CurrentDeck { get; private set; } = new();
-
+    [SerializeField] private List<CardData> _currentDeck = new();
+ 
     [SerializeField] private int _maxDeckSize = 9;
 
+    [SerializeField] private DefaultDeck _defaultDeck;
+
+    protected override void Awake()
+    {
+        base.Awake();
+        DontDestroyOnLoad(gameObject);
+        _currentDeck = _defaultDeck.cards;
+    }
 
     private void OnEnable()
     {
@@ -23,19 +31,24 @@ public class DeckManager : Singleton<DeckManager>
 
     private void AddCard(CardData card)
     {
-        if(CurrentDeck.Count >= _maxDeckSize)
+        if(_currentDeck.Count >= _maxDeckSize)
         {
             return;
         }    
 
-        CurrentDeck.Add(card);
+        _currentDeck.Add(card);
         DeckEvents.DeckProcessed();
     }
 
     private void RemoveCard(CardData card)
     {
-        CurrentDeck.Remove(card);
+        _currentDeck.Remove(card);
         DeckEvents.DeckProcessed();
+    }
+
+    public List<CardData> GetDeck()
+    {
+        return new List<CardData>(_currentDeck);
     }
 
 }

@@ -11,6 +11,11 @@ public class DeckUI : MonoBehaviour
 
     private const float VERTICAL_SPACING = 0.65f;
 
+    private void Start()
+    {
+        BuildUI();
+    }
+
     private void BuildUI()
     {
         foreach(GameObject tab in _cardTabGameObjects)
@@ -20,7 +25,7 @@ public class DeckUI : MonoBehaviour
 
         _cardTabGameObjects.Clear();
 
-        List<CardData> deck = DeckManager.Instance.CurrentDeck;
+        List<CardData> deck = DeckManager.Instance.GetDeck();
 
         for (int i = 0; i < deck.Count; i++)
         {

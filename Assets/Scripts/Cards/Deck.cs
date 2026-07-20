@@ -13,8 +13,13 @@ public class Deck : MonoBehaviour
 
     [SerializeField] private PlayerHand _playerHand;
 
-    private void Start()
+    private void Awake()
     {
+        _drawPile = DeckManager.Instance.GetDeck();
+    }
+
+    private void Start()
+    {  
         Shuffle();
         DrawVisuals();
     }
