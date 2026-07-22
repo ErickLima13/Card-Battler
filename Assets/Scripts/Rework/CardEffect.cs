@@ -1,9 +1,14 @@
-﻿using UnityEngine;
+﻿using Cysharp.Threading.Tasks;
+using UnityEngine;
 
 public abstract class CardEffect : ScriptableObject
 {
     [SerializeField]
     protected int value;
 
-    public abstract void Execute(CardContext context);
+    [SerializeField]
+    protected StatusData statusData;
+
+
+    public abstract UniTask Execute(CardContext context);
 }

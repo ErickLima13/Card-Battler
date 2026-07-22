@@ -2471,6 +2471,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Assets.Scripts.Rework.BattleManager
   _player: {fileID: 987138409}
+  _unitBoss: {fileID: 440299065}
   _boss: {fileID: 440299065}
 --- !u!4 &1865126749
 Transform:
@@ -2628,7 +2629,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::TurnSystem
   _currentTurn: 0
   _turnWaitTime: 2
-  _maxAction: 3
+  _maxAction: 8
   _remainingAction: 0
   _drawConsume: 1
   _reshufleConsume: 2

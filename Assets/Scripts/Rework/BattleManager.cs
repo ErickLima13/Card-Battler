@@ -6,16 +6,22 @@ namespace Assets.Scripts.Rework
     {
 
         [SerializeField] private Player _player;
-        [SerializeField] private Unit _boss;
+        [SerializeField] private Unit _unitBoss;
+
+        [SerializeField] private Boss _boss;
 
         public Player GetPlayer()
         {
             return _player;
         }
 
-        public Unit GetBoss()
+        public Unit GetUnitBoss()
         {
             return _boss;
         }
+
+        public Boss GetBoss() => _boss;
+
+
     }
 }

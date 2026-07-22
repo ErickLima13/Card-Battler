@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-[CreateAssetMenu]
+[CreateAssetMenu(fileName = "StatusData", menuName = "Scriptable Objects/StatusData")]
 public class StatusData : ScriptableObject
 {
     public string displayName;

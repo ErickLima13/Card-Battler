@@ -2,8 +2,8 @@
 
 public class PoisonStatus : StatusEffect
 {
-    public PoisonStatus(Unit owner, int stacks)
-        : base(owner, stacks)
+    public PoisonStatus(Unit owner, int stacks, StatusData data)
+         : base(owner, stacks, data)
     {
     }
 

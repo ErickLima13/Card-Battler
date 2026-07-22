@@ -1,3 +1,4 @@
+using Cysharp.Threading.Tasks;
 using System.Collections;
 using UnityEngine;
 
@@ -91,7 +92,7 @@ public class Boss : Unit
         yield return null;
     }
 
-    public void SetPoison(int poison)
+    public async UniTask SetPoison()
     {
         GameObject temp = Instantiate(_poisonPrefab, _poisonHitPosition);
         Destroy(temp, 1f);
@@ -104,6 +105,8 @@ public class Boss : Unit
         {
             _poisonCounter.SetActive(true);
         }
+
+        await UniTask.WaitForEndOfFrame();
     }
 
 

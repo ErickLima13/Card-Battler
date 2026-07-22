@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using Cysharp.Threading.Tasks;
+using UnityEngine;
 
 namespace Assets.Scripts.Rework
 {
@@ -6,10 +7,11 @@ namespace Assets.Scripts.Rework
 
     public class PoisonEffect : CardEffect
     {
-        public override void Execute(CardContext context)
+        public override async UniTask Execute(CardContext context)
         {
-            context.BattleManager.GetBoss().StatusManager.AddStatus( new PoisonStatus( context.BattleManager.GetBoss(), value));
-            PlayerEvents.ActionFinished();
+            context.BattleManager.GetUnitBoss().StatusManager.AddStatus( new PoisonStatus( context.BattleManager.GetUnitBoss(), value,statusData));
+
+            await context.BattleManager.GetBoss().SetPoison();
         }
     }
 }

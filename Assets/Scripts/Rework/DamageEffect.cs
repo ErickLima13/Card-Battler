@@ -7,24 +7,16 @@ namespace Assets.Scripts.Rework
 
     public class DamageEffect : CardEffect
     {
-        public override void Execute(CardContext context)
+        public override async UniTask Execute(CardContext context)
         {
-            DelayAction(context).Forget();
-        }
+            await context.BattleManager.GetPlayer().Attack();
 
-        private async UniTaskVoid DelayAction(CardContext context)
-        {
-            context.BattleManager.GetPlayer().Attack(context.Card);
-
-           await UniTask.WaitForSeconds(0.5f);
-
-            context.BattleManager.GetBoss().TakeDamage(value);
+            context.BattleManager.GetUnitBoss().TakeDamage(value);
             BossEvents.BossHit(context.Card);
 
             await UniTask.WaitForSeconds(0.5f);
 
-            context.BattleManager.GetPlayer().Return();
-            PlayerEvents.ActionFinished();
+            await context.BattleManager.GetPlayer().Return();
         }
     }
 }

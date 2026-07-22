@@ -1,4 +1,4 @@
-using System.Collections;
+using Cysharp.Threading.Tasks;
 using UnityEngine;
 
 public class Player : Unit
@@ -23,62 +23,48 @@ public class Player : Unit
         _originalPosition = _playerVisual.transform.position;
     }
 
-    private void HandleCardPlayed(CardData cardData)
+    private async void HandleCardPlayed(CardData cardData)
     {
-        CardContext context = new CardContext(this, cardData,_battleManager);
+        CardContext context = new CardContext(this, cardData, _battleManager);
 
         foreach (CardEffect cardEffect in cardData.effects)
         {
-            cardEffect.Execute(context);
+            await cardEffect.Execute(context);
         }
 
-        //if (cardData.poisonPower > 0)
-        //{
-        //    BossEvents.ApplyPoison(cardData.poisonPower);
-        //    PlayerEvents.ActionFinished();
-        //}
+        PlayerEvents.ActionFinished();
     }
 
     public void HealVfx()
-    {      
+    {
         _healVfx.Play();
     }
 
-    public void Attack(CardData cardData)
-    {
-        StartCoroutine(PlayerAttackAnimation(cardData));
-    }
+    public UniTask Attack() => AttackAnimation();
 
-    public void Return()
-    {
-        StartCoroutine(ReturnAnimation());
-    }
+    public UniTask Return() => ReturnAnimation();
 
-    private IEnumerator PlayerAttackAnimation(CardData cardData)
+    private async UniTask AttackAnimation()
     {
         Vector3 targetPosition = _originalPosition + new Vector3(4, 0, 0);
 
         float duration = 0.5f;
         float timeElapsed = 0f;
 
+        _visualAnimator.Play("attackPlayer");
+
         while (timeElapsed < duration)
         {
             _playerVisual.transform.position = Vector3.Lerp(_originalPosition, targetPosition, timeElapsed / duration);
             timeElapsed += Time.deltaTime;
-            yield return null;
-            _visualAnimator.Play("attackPlayer");
+            await UniTask.Yield();
+
         }
 
-        // BossEvents.BossHit(cardData);
-
-
-
-        // PlayerEvents.ActionFinished();
-
-        yield return null;
+        await UniTask.Yield();
     }
 
-    private IEnumerator ReturnAnimation()
+    private async UniTask ReturnAnimation()
     {
         Vector3 targetPosition = _originalPosition + new Vector3(4, 0, 0);
 
@@ -86,16 +72,17 @@ public class Player : Unit
         float timeElapsed = 0f;
 
         timeElapsed = 0f;
+
+        _visualAnimator.Play("returnPlayer");
+
         while (timeElapsed < duration)
         {
             _playerVisual.transform.position = Vector3.Lerp(targetPosition, _originalPosition, timeElapsed / duration);
             timeElapsed += Time.deltaTime;
-            yield return null;
-
-            _visualAnimator.Play("returnPlayer");
+            await UniTask.Yield();
         }
 
-        yield return null;
+        await UniTask.Yield();
     }
 
     private void PlayerHit(int amount)

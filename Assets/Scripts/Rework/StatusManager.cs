@@ -7,7 +7,7 @@ public class StatusManager : MonoBehaviour
 {
     private readonly List<StatusEffect> activeEffects = new();
 
-    public event Action StatusesChanged;
+    public event Action OnStatusesChanged;
 
     [SerializeField]
     private List<StatusDebug> debugEffects = new();
@@ -16,7 +16,7 @@ public class StatusManager : MonoBehaviour
     {
         foreach (var active in activeEffects)
         {
-            if (activeEffects.Contains(active))
+            if (active.Name == effect.Name)
             {
                 active.AddStacks(effect.Stacks);
                 UpdateStatusDebug();
@@ -43,6 +43,8 @@ public class StatusManager : MonoBehaviour
                 Stacks = e.Stacks
             });
         }
+
+        OnStatusesChanged?.Invoke();
     }
 
     public async UniTask OnTurnStart()
@@ -75,11 +77,6 @@ public class StatusManager : MonoBehaviour
         }
 
         UpdateStatusDebug();
-    }
-
-    public void NotifyStatusChanged()
-    {
-        StatusesChanged?.Invoke();
     }
 }
 

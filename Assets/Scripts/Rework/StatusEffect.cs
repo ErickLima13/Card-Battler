@@ -10,10 +10,13 @@ public abstract class StatusEffect
 
     public int Stacks => stacks;
 
-    protected StatusEffect(Unit owner, int stacks)
+    public StatusData Data { get; private set; }
+
+    protected StatusEffect(Unit owner, int stacks, StatusData data)
     {
         this.owner = owner;
         this.stacks = stacks;
+        Data = data;
     }
 
     public virtual void AddStacks(int amount)

@@ -13,3 +13,4 @@ MonoBehaviour:
   m_Name: PoisonEffect
   m_EditorClassIdentifier: Assembly-CSharp::Assets.Scripts.Rework.PoisonEffect
   value: 2
+  statusData: {fileID: 11400000, guid: ac3bc87aef667594c9548b37e2c3b563, type: 2}
