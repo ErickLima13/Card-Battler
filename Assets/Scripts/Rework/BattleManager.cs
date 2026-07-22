@@ -9,6 +9,7 @@ namespace Assets.Scripts.Rework
         [SerializeField] private Unit _unitBoss;
 
         [SerializeField] private Boss _boss;
+        [SerializeField] private BossView _bossView;
 
         public Player GetPlayer()
         {
@@ -21,6 +22,8 @@ namespace Assets.Scripts.Rework
         }
 
         public Boss GetBoss() => _boss;
+
+        public BossView GetBossView() => _bossView;
 
 
     }

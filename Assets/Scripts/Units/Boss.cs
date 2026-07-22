@@ -8,17 +8,9 @@ public class Boss : Unit
 
     [SerializeField] private int _attackDamage = 5;
 
-    [SerializeField] private Transform _poisonCounterPosition;
-
-    [SerializeField] private Transform _poisonHitPosition;
-
-    [SerializeField] private GameObject _poisonPrefab;
-
     private Animator _visualAnimator;
 
     private Vector3 _originalPosition;
-
-    public GameObject _poisonCounter;
 
 
     private void Awake()
@@ -92,23 +84,7 @@ public class Boss : Unit
         yield return null;
     }
 
-    public async UniTask SetPoison()
-    {
-        GameObject temp = Instantiate(_poisonPrefab, _poisonHitPosition);
-        Destroy(temp, 1f);
-
-        if (_poisonCounter == null)
-        {
-            _poisonCounter = Instantiate(_poisonPrefab, _poisonCounterPosition);
-        }
-        else
-        {
-            _poisonCounter.SetActive(true);
-        }
-
-        await UniTask.WaitForEndOfFrame();
-    }
-
+  
 
     private void OnEnable()
     {

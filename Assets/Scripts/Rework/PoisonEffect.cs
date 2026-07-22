@@ -11,7 +11,7 @@ namespace Assets.Scripts.Rework
         {
             context.BattleManager.GetUnitBoss().StatusManager.AddStatus( new PoisonStatus( context.BattleManager.GetUnitBoss(), value,statusData));
 
-            await context.BattleManager.GetBoss().SetPoison();
+            await context.BattleManager.GetBossView().ApplyPoisonVfx();
         }
     }
 }

@@ -12,6 +12,8 @@ public class StatusManager : MonoBehaviour
     [SerializeField]
     private List<StatusDebug> debugEffects = new();
 
+    public List<StatusEffect> ActiveEffects => activeEffects;
+
     public void AddStatus(StatusEffect effect)
     {
         foreach (var active in activeEffects)

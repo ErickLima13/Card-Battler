@@ -246,37 +246,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 977035694}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &139185271
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 139185272}
-  m_Layer: 0
-  m_Name: PoisonCounterPos
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &139185272
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 139185271}
-  serializedVersion: 2
-  m_LocalRotation: {x: -0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 29.057148, y: 1.171428, z: 0}
-  m_LocalScale: {x: 14.285715, y: 14.285715, z: 14.285715}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 844106344}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &433741363
 GameObject:
   m_ObjectHideFlags: 0
@@ -407,10 +376,6 @@ MonoBehaviour:
   _statusManager: {fileID: 440299068}
   _bossVisual: {fileID: 926182102}
   _attackDamage: 1
-  _poisonCounterPosition: {fileID: 139185272}
-  _poisonHitPosition: {fileID: 1271899770}
-  _poisonPrefab: {fileID: 1626477230281708932, guid: d688b2063a31ee848aed2c6050f1cba7, type: 3}
-  _poisonCounter: {fileID: 0}
 --- !u!114 &440299066
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -425,7 +390,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::Health
   _totalHealth: 50
   _healthText: {fileID: 844106345}
-  _poisonText: {fileID: 942943626}
   _healthBar: {fileID: 844106346}
 --- !u!4 &440299067
 Transform:
@@ -441,6 +405,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 926182105}
+  - {fileID: 1843067863}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &440299068
@@ -1310,6 +1275,14 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 926182105}
     m_Modifications:
+    - target: {fileID: 1272627313349373793, guid: 7caa4ee2f8d815f4abd916f4e7f4ac46, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 28
+      objectReference: {fileID: 0}
+    - target: {fileID: 1272627313349373793, guid: 7caa4ee2f8d815f4abd916f4e7f4ac46, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 1302536593345614409, guid: 7caa4ee2f8d815f4abd916f4e7f4ac46, type: 3}
       propertyPath: m_AnchorMax.x
       value: 0
@@ -1318,17 +1291,21 @@ PrefabInstance:
       propertyPath: m_AnchorMax.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2347198460736703588, guid: 7caa4ee2f8d815f4abd916f4e7f4ac46, type: 3}
+      propertyPath: m_LocalScale.x
+      value: -1
+      objectReference: {fileID: 0}
     - target: {fileID: 3751836631861244558, guid: 7caa4ee2f8d815f4abd916f4e7f4ac46, type: 3}
       propertyPath: m_Name
       value: HealthUIUnit
       objectReference: {fileID: 0}
-    - target: {fileID: 7257688835943290064, guid: 7caa4ee2f8d815f4abd916f4e7f4ac46, type: 3}
-      propertyPath: m_Camera
-      value: 
-      objectReference: {fileID: 519420031}
     - target: {fileID: 7395073126812828943, guid: 7caa4ee2f8d815f4abd916f4e7f4ac46, type: 3}
       propertyPath: m_PresetInfoIsWorld
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8430378376852495534, guid: 7caa4ee2f8d815f4abd916f4e7f4ac46, type: 3}
+      propertyPath: m_text
+      value: 3333
       objectReference: {fileID: 0}
     - target: {fileID: 8944370672890056792, guid: 7caa4ee2f8d815f4abd916f4e7f4ac46, type: 3}
       propertyPath: m_Pivot.x
@@ -1361,10 +1338,6 @@ PrefabInstance:
     - target: {fileID: 8944370672890056792, guid: 7caa4ee2f8d815f4abd916f4e7f4ac46, type: 3}
       propertyPath: m_SizeDelta.y
       value: 100
-      objectReference: {fileID: 0}
-    - target: {fileID: 8944370672890056792, guid: 7caa4ee2f8d815f4abd916f4e7f4ac46, type: 3}
-      propertyPath: m_LocalScale.x
-      value: -0.01
       objectReference: {fileID: 0}
     - target: {fileID: 8944370672890056792, guid: 7caa4ee2f8d815f4abd916f4e7f4ac46, type: 3}
       propertyPath: m_LocalPosition.x
@@ -1416,10 +1389,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
-    m_AddedGameObjects:
-    - targetCorrespondingSourceObject: {fileID: 8944370672890056792, guid: 7caa4ee2f8d815f4abd916f4e7f4ac46, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 139185272}
+    m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 7caa4ee2f8d815f4abd916f4e7f4ac46, type: 3}
 --- !u!224 &844106344 stripped
@@ -1449,6 +1419,48 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 67db9e8f0e2ae9c40bc1e2b64352a6b4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Slider
+--- !u!114 &844106347 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 8430378376852495534, guid: 7caa4ee2f8d815f4abd916f4e7f4ac46, type: 3}
+  m_PrefabInstance: {fileID: 844106343}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Unity.TextMeshPro::TMPro.TextMeshProUGUI
+--- !u!1 &883781200
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 883781201}
+  m_Layer: 0
+  m_Name: PoisonCounterPos
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &883781201
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 883781200}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: 0, w: 1}
+  m_LocalPosition: {x: -0.06700005, y: 0.22399999, z: 0}
+  m_LocalScale: {x: -0.14285713, y: 0.14285713, z: 0.14285713}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 926182105}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &925385623
 GameObject:
   m_ObjectHideFlags: 0
@@ -1712,19 +1724,9 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 844106344}
+  - {fileID: 883781201}
   m_Father: {fileID: 440299067}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &942943626 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 8430378376852495534, guid: 7caa4ee2f8d815f4abd916f4e7f4ac46, type: 3}
-  m_PrefabInstance: {fileID: 844106343}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Unity.TextMeshPro::TMPro.TextMeshProUGUI
 --- !u!1 &977035693
 GameObject:
   m_ObjectHideFlags: 0
@@ -1851,7 +1853,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::Health
   _totalHealth: 50
   _healthText: {fileID: 613840041}
-  _poisonText: {fileID: 942943626}
   _healthBar: {fileID: 829648768}
 --- !u!114 &987138411
 MonoBehaviour:
@@ -2441,6 +2442,56 @@ Transform:
   m_Children: []
   m_Father: {fileID: 977035694}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1843067862
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1843067863}
+  - component: {fileID: 1843067864}
+  m_Layer: 0
+  m_Name: BossView
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1843067863
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1843067862}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0.59999996, y: -0.14285713, z: 0}
+  m_LocalScale: {x: -0.14285713, y: 0.14285713, z: 0.14285713}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 440299067}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1843067864
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1843067862}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fc6a376a404609b46b8621b07126d101, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::BossView
+  _poisonCounterPosition: {fileID: 883781201}
+  _poisonText: {fileID: 844106347}
+  _statusManager: {fileID: 440299068}
+  _poisonPrefab: {fileID: 1626477230281708932, guid: d688b2063a31ee848aed2c6050f1cba7, type: 3}
+  _poisonHitPosition: {fileID: 1271899770}
+  _poisonCounter: {fileID: 0}
 --- !u!1 &1865126747
 GameObject:
   m_ObjectHideFlags: 0

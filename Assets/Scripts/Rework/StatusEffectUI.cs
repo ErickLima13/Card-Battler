@@ -26,8 +26,8 @@ public class StatusEffectUI : MonoBehaviour
             return;
 
 
-        _icon.sprite = _currentStatus.Data.icon;
-        _icon.color = _currentStatus.Data.color;
+        //_icon.sprite = _currentStatus.Data.icon;
+        //_icon.color = _currentStatus.Data.color;
 
         _stackText.text = _currentStatus.Stacks.ToString();
     }
