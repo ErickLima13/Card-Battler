@@ -455,6 +455,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 56b27835f43e8bb44ac0ff532768c37a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::StatusManager
+  debugEffects: []
 --- !u!1 &470418564
 GameObject:
   m_ObjectHideFlags: 0
@@ -1864,6 +1865,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 56b27835f43e8bb44ac0ff532768c37a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::StatusManager
+  debugEffects: []
 --- !u!1 &1008692948
 GameObject:
   m_ObjectHideFlags: 0
@@ -2395,6 +2397,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: ReturnCanvas
       objectReference: {fileID: 0}
+    - target: {fileID: 6605639571454747235, guid: ab034c61597a1384ca3a27cfd23cb5b0, type: 3}
+      propertyPath: m_Camera
+      value: 
+      objectReference: {fileID: 519420031}
+    - target: {fileID: 6605639571454747235, guid: ab034c61597a1384ca3a27cfd23cb5b0, type: 3}
+      propertyPath: m_RenderMode
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -2471,7 +2481,7 @@ Transform:
   m_GameObject: {fileID: 1865126747}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.3895, y: 1.25344, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []

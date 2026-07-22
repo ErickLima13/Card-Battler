@@ -3,26 +3,20 @@
 public class PoisonStatus : StatusEffect
 {
     public PoisonStatus(Unit owner, int stacks)
-        : base(owner)
+        : base(owner, stacks)
     {
-        this.stacks = stacks;
     }
 
     public override async UniTask OnTurnStart()
     {
         owner.TakeDamage(stacks);
 
-        stacks--;
+        RemoveStacks(1);
 
         await UniTask.CompletedTask;
     }
 
-    public override void Merge(StatusEffect other)
-    {
-        PoisonStatus poison = (PoisonStatus)other;
+    public override bool IsFinished => Stacks <= 0;
 
-        stacks += poison.stacks;
-    }
-
-    public override bool IsFinished => stacks <= 0;
+    public override string Name => "Poison";
 }

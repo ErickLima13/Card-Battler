@@ -1,10 +1,13 @@
 ﻿using Cysharp.Threading.Tasks;
+using System;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class StatusManager : MonoBehaviour
 {
     private readonly List<StatusEffect> activeEffects = new();
+
+    public event Action StatusesChanged;
 
     [SerializeField]
     private List<StatusDebug> debugEffects = new();
@@ -15,7 +18,7 @@ public class StatusManager : MonoBehaviour
         {
             if (activeEffects.Contains(active))
             {
-                active.Merge(effect);
+                active.AddStacks(effect.Stacks);
                 UpdateStatusDebug();
                 return;
             }
@@ -36,8 +39,8 @@ public class StatusManager : MonoBehaviour
         {
             debugEffects.Add(new StatusDebug
             {
-                Name = e.ToString(),
-                Stacks = e.stacks
+                Name = e.Name,
+                Stacks = e.Stacks
             });
         }
     }
@@ -72,6 +75,11 @@ public class StatusManager : MonoBehaviour
         }
 
         UpdateStatusDebug();
+    }
+
+    public void NotifyStatusChanged()
+    {
+        StatusesChanged?.Invoke();
     }
 }
 

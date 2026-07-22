@@ -14,10 +14,8 @@ public class Health : MonoBehaviour
 
     private int _currentHealth;
 
-
     private bool _isDied;
 
-   // public int poisonCount;
 
     public bool Dead() => _isDied;
 
@@ -45,7 +43,7 @@ public class Health : MonoBehaviour
 
         _currentHealth += amount;
 
-        if(_currentHealth  > _totalHealth)
+        if (_currentHealth > _totalHealth)
         {
             _currentHealth = _totalHealth;
         }
@@ -63,7 +61,7 @@ public class Health : MonoBehaviour
 
         _currentHealth -= amount;
 
-        if(_currentHealth <= 0)
+        if (_currentHealth <= 0)
         {
             _currentHealth = 0;
             _isDied = true;
@@ -73,8 +71,10 @@ public class Health : MonoBehaviour
 
     }
 
-    public void UpdatePoisonCounter(string value)
+
+    public void UpdatePoisonCounter(int value)
     {
-        _poisonText.text = value;
+        _poisonText.text = value.ToString();
+        gameObject.SetActive(value > 0);
     }
 }

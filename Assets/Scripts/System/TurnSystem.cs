@@ -40,7 +40,7 @@ public class TurnSystem : Singleton<TurnSystem>
         TurnEvents.PlayerTurnStart();
     }
 
-    private void EndPlayerTurn()
+    public void EndPlayerTurn()
     {
         TurnEvents.PlayerTurnEnd();
         StartCoroutine(WaitBetweenTurns());
