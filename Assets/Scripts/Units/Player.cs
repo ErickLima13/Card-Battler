@@ -32,20 +32,6 @@ public class Player : Unit
             cardEffect.Execute(context);
         }
 
-
-        //if (cardData.attackPower > 0)
-        //{
-        //    Attack(cardData);
-        //}
-
-        //if (cardData.healPower > 0)
-        //{
-        //    foreach(CardEffect cardEffect in cardData.effects)
-        //    {
-        //        cardEffect.Execute(context);
-        //    }
-        //}
-
         //if (cardData.poisonPower > 0)
         //{
         //    BossEvents.ApplyPoison(cardData.poisonPower);
@@ -63,6 +49,11 @@ public class Player : Unit
         StartCoroutine(PlayerAttackAnimation(cardData));
     }
 
+    public void Return()
+    {
+        StartCoroutine(ReturnAnimation());
+    }
+
     private IEnumerator PlayerAttackAnimation(CardData cardData)
     {
         Vector3 targetPosition = _originalPosition + new Vector3(4, 0, 0);
@@ -78,9 +69,21 @@ public class Player : Unit
             _visualAnimator.Play("attackPlayer");
         }
 
-        BossEvents.BossHit(cardData);
+        // BossEvents.BossHit(cardData);
 
-        yield return new WaitForSeconds(0.5f);
+
+
+        // PlayerEvents.ActionFinished();
+
+        yield return null;
+    }
+
+    private IEnumerator ReturnAnimation()
+    {
+        Vector3 targetPosition = _originalPosition + new Vector3(4, 0, 0);
+
+        float duration = 0.5f;
+        float timeElapsed = 0f;
 
         timeElapsed = 0f;
         while (timeElapsed < duration)
@@ -91,8 +94,6 @@ public class Player : Unit
 
             _visualAnimator.Play("returnPlayer");
         }
-
-        PlayerEvents.ActionFinished();
 
         yield return null;
     }

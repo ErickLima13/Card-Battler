@@ -7,8 +7,8 @@ namespace Assets.Scripts.Rework
     {
         public override void Execute(CardContext context)
         {
-            context.Source.Heal(value);
             context.BattleManager.GetPlayer().HealVfx();
+            context.Source.Heal(value);
 
             PlayerEvents.PlayerHealed();
             PlayerEvents.ActionFinished();

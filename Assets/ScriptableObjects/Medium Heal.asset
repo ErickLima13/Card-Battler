@@ -15,6 +15,7 @@ MonoBehaviour:
   cardName: Medium Heal
   description: Restore 5 health.
   actionCost: 2
-  attackPower: 0
-  healPower: 5
+  poisonPower: 0
   illustration: {fileID: 21300000, guid: 236383e48f6a7df49943fbd2134e71e7, type: 3}
+  effects:
+  - {fileID: 11400000, guid: b1818d20c6ca04845915641820d44c6f, type: 2}

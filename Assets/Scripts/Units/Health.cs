@@ -58,7 +58,7 @@ public class Health : MonoBehaviour
     {
         if (amount <= 0) return;
 
-        string temp = "+ " + amount;
+        string temp = "- " + amount;
         DamagePopup.Create($"{temp}", Vector3.up, transform, Color.red, 20);
 
         _currentHealth -= amount;

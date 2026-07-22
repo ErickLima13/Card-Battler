@@ -8,7 +8,6 @@ public class CardData : ScriptableObject
     public string description;
 
     public int actionCost;
-    public int attackPower;
 
     public int poisonPower;
 

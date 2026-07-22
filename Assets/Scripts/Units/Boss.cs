@@ -33,7 +33,7 @@ public class Boss : Unit
 
     private void HandleBossHit(CardData cardData)
     {
-        _health.TakeDamage(cardData.attackPower);
+       // _health.TakeDamage(cardData.attackPower);
         Damage();
     }
 
