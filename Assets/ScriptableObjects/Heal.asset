@@ -17,4 +17,7 @@ MonoBehaviour:
   actionCost: 1
   attackPower: 0
   healPower: 3
+  poisonPower: 0
   illustration: {fileID: -98272708732530083, guid: 193b16bc531390641b919d6fc0c4732a, type: 3}
+  effects:
+  - {fileID: 11400000, guid: 37890860074bba7428b3cb76f4372b65, type: 2}

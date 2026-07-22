@@ -1,7 +1,7 @@
 using System.Collections;
 using UnityEngine;
 
-public class Boss : MonoBehaviour
+public class Boss : Unit
 {
     [SerializeField] private GameObject _bossVisual;
 
@@ -14,8 +14,6 @@ public class Boss : MonoBehaviour
     [SerializeField] private GameObject _poisonPrefab;
 
     private Animator _visualAnimator;
-
-    private Health _health;
 
     private Vector3 _originalPosition;
 

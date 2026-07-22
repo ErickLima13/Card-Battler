@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using UnityEngine;
 
 [CreateAssetMenu(fileName = "CardData", menuName = "Scriptable Objects/CardData")]
@@ -8,11 +9,10 @@ public class CardData : ScriptableObject
 
     public int actionCost;
     public int attackPower;
-    public int healPower;
 
     public int poisonPower;
 
     public Sprite illustration;
 
-
+    public List<CardEffect> effects = new();
 }

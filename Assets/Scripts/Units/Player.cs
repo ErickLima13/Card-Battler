@@ -1,17 +1,13 @@
-using System;
 using System.Collections;
 using UnityEngine;
-using FGT.Prototypes.DamagePopup;
 
-public class Player : MonoBehaviour
+public class Player : Unit
 {
     [SerializeField] private GameObject _playerVisual;
 
     private Vector3 _originalPosition;
 
     private Animator _visualAnimator;
-
-    private Health _health;
 
     private ParticleSystem _healVfx;
 
@@ -29,34 +25,40 @@ public class Player : MonoBehaviour
 
     private void HandleCardPlayed(CardData cardData)
     {
-        if (cardData.attackPower > 0)
+        CardContext context = new CardContext(this, cardData,_battleManager);
+
+        foreach (CardEffect cardEffect in cardData.effects)
         {
-            Attack(cardData);
+            cardEffect.Execute(context);
         }
 
-        if(cardData.healPower  > 0)
-        {
-            Heal(cardData);
-        }
 
-        if(cardData.poisonPower > 0)
-        {
-            BossEvents.ApplyPoison(cardData.poisonPower);
-            PlayerEvents.AttackComplete();
-        }
+        //if (cardData.attackPower > 0)
+        //{
+        //    Attack(cardData);
+        //}
+
+        //if (cardData.healPower > 0)
+        //{
+        //    foreach(CardEffect cardEffect in cardData.effects)
+        //    {
+        //        cardEffect.Execute(context);
+        //    }
+        //}
+
+        //if (cardData.poisonPower > 0)
+        //{
+        //    BossEvents.ApplyPoison(cardData.poisonPower);
+        //    PlayerEvents.ActionFinished();
+        //}
     }
 
-    private void Heal(CardData cardData)
-    {
-        _health.HealDamage(cardData.healPower);
+    public void HealVfx()
+    {      
         _healVfx.Play();
-        PlayerEvents.PlayerHealed();
-
-        PlayerEvents.AttackComplete();
-
     }
 
-    private void Attack(CardData cardData)
+    public void Attack(CardData cardData)
     {
         StartCoroutine(PlayerAttackAnimation(cardData));
     }
@@ -73,7 +75,7 @@ public class Player : MonoBehaviour
             _playerVisual.transform.position = Vector3.Lerp(_originalPosition, targetPosition, timeElapsed / duration);
             timeElapsed += Time.deltaTime;
             yield return null;
-            _visualAnimator.Play("attackPlayer");        
+            _visualAnimator.Play("attackPlayer");
         }
 
         BossEvents.BossHit(cardData);
@@ -90,7 +92,7 @@ public class Player : MonoBehaviour
             _visualAnimator.Play("returnPlayer");
         }
 
-        PlayerEvents.AttackComplete();
+        PlayerEvents.ActionFinished();
 
         yield return null;
     }

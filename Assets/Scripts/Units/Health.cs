@@ -36,7 +36,7 @@ public class Health : MonoBehaviour
         _healthBar.value = _currentHealth;
     }
 
-    public void HealDamage(int amount)
+    public void Heal(int amount)
     {
         if (amount <= 0) return;
 
