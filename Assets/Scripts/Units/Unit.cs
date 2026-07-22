@@ -9,6 +9,13 @@ public abstract class Unit : MonoBehaviour
     [SerializeField]
     protected BattleManager _battleManager;
 
+    [SerializeField]
+    protected StatusManager _statusManager;
+
+    public StatusManager StatusManager => _statusManager;
+    public BattleManager BattleManager => _battleManager;
+
+
 
     public virtual void TakeDamage(int damage)
     {

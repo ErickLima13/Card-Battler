@@ -33,7 +33,6 @@ public class Boss : Unit
 
     private void HandleBossHit(CardData cardData)
     {
-       // _health.TakeDamage(cardData.attackPower);
         Damage();
     }
 
@@ -48,14 +47,16 @@ public class Boss : Unit
         }
     }
 
-    private void BossStartTurn()
+    private async void BossStartTurn()
     {
-        StartCoroutine(CheckPoison());
+        await StatusManager.OnTurnStart();
 
         if (_health.Dead())
         {
             return;
         }
+
+        StartCoroutine(BossAttackAnimation());
     }
 
     private IEnumerator BossAttackAnimation()
@@ -103,61 +104,18 @@ public class Boss : Unit
         {
             _poisonCounter.SetActive(true);
         }
-
-        _health.SetPoison(poison);
     }
 
-    public IEnumerator CheckPoison()
-    {
-        if (_health.poisonCount > 0)
-        {
-            _health.TakeDamage(1);
-            Damage();
-            yield return new WaitForSeconds(0.5f);
-            _health.poisonCount--;
-            _health.UpdatePoisonCounter(_health.poisonCount.ToString());
-        }
-        else if( _poisonCounter != null) 
-        {
-            _poisonCounter.SetActive(false);
-        } 
-
-        CheckPoisonEndTurn();
-
-        if (!_health.Dead())
-        {
-            StartCoroutine(BossAttackAnimation());
-        } 
-    }
-
-    private void CheckPoisonEndTurn()
-    {
-        if( _poisonCounter != null)
-        {
-            if (_health.poisonCount <= 0)
-            {
-                _poisonCounter.SetActive(false);
-                _health.UpdatePoisonCounter("");
-            }
-        }
-    }
 
     private void OnEnable()
     {
         BossEvents.OnBossHit += HandleBossHit;
         TurnEvents.OnBossTurnStart += BossStartTurn;
-        BossEvents.OnApplyPoison += SetPoison;
-        TurnEvents.OnBossTurnEnd += CheckPoisonEndTurn;
-
     }
 
     private void OnDisable()
     {
         BossEvents.OnBossHit -= HandleBossHit;
         TurnEvents.OnBossTurnStart -= BossStartTurn;
-        BossEvents.OnApplyPoison -= SetPoison;
-        TurnEvents.OnBossTurnEnd -= CheckPoisonEndTurn;
-
-
     }
 }

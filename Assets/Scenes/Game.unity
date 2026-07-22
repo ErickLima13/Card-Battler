@@ -382,6 +382,7 @@ GameObject:
   - component: {fileID: 440299067}
   - component: {fileID: 440299065}
   - component: {fileID: 440299066}
+  - component: {fileID: 440299068}
   m_Layer: 0
   m_Name: Boss
   m_TagString: Untagged
@@ -403,6 +404,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::Boss
   _health: {fileID: 440299066}
   _battleManager: {fileID: 1865126748}
+  _statusManager: {fileID: 440299068}
   _bossVisual: {fileID: 926182102}
   _attackDamage: 1
   _poisonCounterPosition: {fileID: 139185272}
@@ -425,7 +427,6 @@ MonoBehaviour:
   _healthText: {fileID: 844106345}
   _poisonText: {fileID: 942943626}
   _healthBar: {fileID: 844106346}
-  poisonCount: 0
 --- !u!4 &440299067
 Transform:
   m_ObjectHideFlags: 0
@@ -442,6 +443,18 @@ Transform:
   - {fileID: 926182105}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &440299068
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 440299064}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 56b27835f43e8bb44ac0ff532768c37a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::StatusManager
 --- !u!1 &470418564
 GameObject:
   m_ObjectHideFlags: 0
@@ -1783,6 +1796,7 @@ GameObject:
   - component: {fileID: 987138408}
   - component: {fileID: 987138409}
   - component: {fileID: 987138410}
+  - component: {fileID: 987138411}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -1820,6 +1834,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::Player
   _health: {fileID: 987138410}
   _battleManager: {fileID: 1865126748}
+  _statusManager: {fileID: 987138411}
   _playerVisual: {fileID: 470418564}
 --- !u!114 &987138410
 MonoBehaviour:
@@ -1835,9 +1850,20 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::Health
   _totalHealth: 50
   _healthText: {fileID: 613840041}
-  _poisonText: {fileID: 0}
+  _poisonText: {fileID: 942943626}
   _healthBar: {fileID: 829648768}
-  poisonCount: 0
+--- !u!114 &987138411
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 987138407}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 56b27835f43e8bb44ac0ff532768c37a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::StatusManager
 --- !u!1 &1008692948
 GameObject:
   m_ObjectHideFlags: 0

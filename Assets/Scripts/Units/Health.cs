@@ -17,7 +17,7 @@ public class Health : MonoBehaviour
 
     private bool _isDied;
 
-    public int poisonCount;
+   // public int poisonCount;
 
     public bool Dead() => _isDied;
 
@@ -71,12 +71,6 @@ public class Health : MonoBehaviour
 
         UpdateHealthUI();
 
-    }
-
-    public void SetPoison(int poison)
-    {
-        poisonCount += poison;
-        UpdatePoisonCounter(poisonCount.ToString());
     }
 
     public void UpdatePoisonCounter(string value)

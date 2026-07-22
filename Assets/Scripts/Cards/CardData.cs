@@ -9,7 +9,7 @@ public class CardData : ScriptableObject
 
     public int actionCost;
 
-    public int poisonPower;
+//    public int poisonPower;
 
     public Sprite illustration;
 

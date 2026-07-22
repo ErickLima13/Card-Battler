@@ -15,7 +15,6 @@ MonoBehaviour:
   cardName: Poison Attack
   description: Put x counter of poison
   actionCost: 2
-  attackPower: 0
-  healPower: 0
-  poisonPower: 2
   illustration: {fileID: 3238905820438639453, guid: 193b16bc531390641b919d6fc0c4732a, type: 3}
+  effects:
+  - {fileID: 11400000, guid: 2495970689e081643a100c61b4cec3e3, type: 2}
