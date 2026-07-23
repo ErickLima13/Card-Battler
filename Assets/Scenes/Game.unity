@@ -2524,6 +2524,7 @@ MonoBehaviour:
   _player: {fileID: 987138409}
   _unitBoss: {fileID: 440299065}
   _boss: {fileID: 440299065}
+  _bossView: {fileID: 1843067864}
 --- !u!4 &1865126749
 Transform:
   m_ObjectHideFlags: 0
